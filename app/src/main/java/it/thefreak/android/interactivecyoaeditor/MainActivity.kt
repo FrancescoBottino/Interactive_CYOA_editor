@@ -10,7 +10,6 @@ import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 import it.thefreak.android.interactivecyoaeditor.databinding.ActivityMainBinding
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormKey
 
-
 class MainActivity : BasicActivity(), SimpleStateChanger.NavigationHandler {
     private lateinit var fragmentStateChanger: DefaultFragmentStateChanger
     private var currentMenuRes: Int? = null
@@ -37,37 +36,5 @@ class MainActivity : BasicActivity(), SimpleStateChanger.NavigationHandler {
 
     override fun onNavigationEvent(stateChange: StateChange) {
         fragmentStateChanger.handleStateChange(stateChange)
-        //setUpActionbar(stateChange.topNewKey<FragmentKey>())
     }
-
-    /*
-
-    private fun setUpActionbar(fragmentKey: FragmentKey) {
-        setTitle(fragmentKey.titleRes)
-
-        //TODO send navigation and menu click actions to fragment
-
-        supportActionBar?.let { actionBar ->
-            fragmentKey.backNavigationIcon?.let { navIcon ->
-                actionBar.setDisplayHomeAsUpEnabled(true)
-                actionBar.setDisplayShowHomeEnabled(true)
-                actionBar.setNavigationIcon(navIcon)
-            } ?: run {
-                actionBar.setDisplayHomeAsUpEnabled(false)
-                actionBar.setDisplayShowHomeEnabled(false)
-            }
-        }
-
-        currentMenuRes = fragmentKey.menuRes
-        invalidateOptionsMenu()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return currentMenuRes?.let {
-            menuInflater.inflate(it, menu)
-            true
-        } ?: false
-    }
-
-     */
 }
