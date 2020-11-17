@@ -3,11 +3,14 @@ package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate
 import android.os.Bundle
 import android.view.View
 import com.zhuinden.simplestackextensions.fragments.KeyedFragment
+import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.PointStateFormFragmentBinding
+import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.PointState
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
+import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
 
 class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) {
@@ -26,6 +29,10 @@ class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) 
 
         binding = PointStateFormFragmentBinding.bind(view)
         with(binding) {
+            topAppBar.setNavigationOnClickListener {
+                backstack.goBack()
+            }
+
             nameField.onTextChanged {
                 pointState.name = it
             }
@@ -36,6 +43,20 @@ class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) 
                 if(it.isNotBlank())
                     pointState.amount = it.toInt()
             }
+            canGoUnderZeroSwitchField.setOnCheckedChangeListener { _, checked ->
+                pointState.canGoUnderZero = checked
+            }
+            isHiddenSwitchField.setOnCheckedChangeListener { _, checked ->
+                pointState.hide = checked
+
+                if(checked) {
+                    requirementsList.show()
+                } else {
+                    requirementsList.hide()
+                }
+            }
+
+            //TODO list listeners
         }
     }
 
@@ -46,6 +67,17 @@ class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) 
             descriptionField.setText(pointState.description)
             pointState.amount?.let {
                 initialAmountField.setText(it.toString())
+            }
+            (pointState.canGoUnderZero?:false).let {
+                canGoUnderZeroSwitchField.isChecked = it
+            }
+            (pointState.hide?:false).let {
+                isHiddenSwitchField.isChecked = it
+                if(it) {
+                    requirementsList.show()
+                } else {
+                    requirementsList.hide()
+                }
             }
         }
     }

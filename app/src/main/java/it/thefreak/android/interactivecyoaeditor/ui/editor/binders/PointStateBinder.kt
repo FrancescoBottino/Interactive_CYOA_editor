@@ -23,17 +23,13 @@ class PointStateBinder constructor(
         }
 
         override fun bindView(item: PointStateBinder, payloads: List<Any>) {
-            val displayedName = if(item.pointState.name.isNullOrBlank()) {
-                if(item.pointState.id.isNullOrBlank()) {
-                    ""
-                } else item.pointState.id!!
+            binding.titleLabel.text = if(item.pointState.name.isNullOrBlank()) {
+                root.context.getString(R.string.unnamed_points)
             } else item.pointState.name!!
-            binding.titleLabel.text = root.context.getString(R.string.point_type_binder_name_label, displayedName)
 
-            val displayedAmount = item.pointState.amount?.toString()?:""
             binding.overtext.hideIf {
-                displayedAmount.isBlank()
-            }.text = root.context.getString(R.string.point_type_binder_amount_label, displayedAmount)
+                item.pointState.id.isNullOrBlank()
+            }.text = item.pointState.id
 
             binding.subtitleLabel.hideIf {
                 item.pointState.description.isNullOrBlank()

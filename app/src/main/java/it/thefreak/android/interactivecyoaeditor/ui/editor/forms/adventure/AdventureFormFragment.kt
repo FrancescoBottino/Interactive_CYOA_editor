@@ -30,6 +30,20 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
 
         binding = AdventureFormFragmentBinding.bind(view)
         with(binding) {
+            topAppBar.setNavigationOnClickListener {
+                backstack.goBack()
+            }
+
+            topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.editor_menu_save_action -> {
+                        //TODO handle save action
+                        true
+                    }
+                    else -> false
+                }
+            }
+
             nameField.onTextChanged {
                 adventure.name = it
             }
