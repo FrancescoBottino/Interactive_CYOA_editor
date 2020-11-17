@@ -1,63 +1,75 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-import android.graphics.drawable.DrawableContainer
 import it.thefreak.android.interactivecyoaeditor.init
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.IdManager
 import kotlin.reflect.KMutableProperty0
 
-inline fun <reified T: DeepCopyable> ArrayList<T>.deepCopy(otherList: ArrayList<T>) {
+inline fun <reified T: IdentifiableItem> ArrayList<T>.deepCopy(otherList: ArrayList<T>, idManager: IdManager, registerChildIds: Boolean = true) {
     addAll(
-        otherList.map{ otherItem ->
-            otherItem.newInstance().apply {
-                deepCopy(otherItem)
-            } as T
-        }
+            otherList.map{ otherItem ->
+                otherItem.newInstance().apply {
+                    deepCopy(otherItem, idManager)
+                    if(registerChildIds) {
+                        insertIntoIdMap(idManager)
+                    }
+                } as T
+            }
     )
 }
 
-inline fun <reified T: DeepCopyable> deepCopyList(otherList: ArrayList<T>?): ArrayList<T>? {
+inline fun <reified T: IdentifiableItem> deepCopyList(otherList: ArrayList<T>?, idManager: IdManager, registerChildIds: Boolean = true): ArrayList<T>? {
     return otherList?.let { otherListNotNull ->
         ArrayList<T>().apply {
-            deepCopy(otherListNotNull)
+            deepCopy(otherListNotNull, idManager, registerChildIds)
         }
     }
 }
 
-inline fun <reified T: IdentifiableItem> T.insert(idManager: IdManager, container: ArrayList<T>): T {
-    this.id = idManager.add(this)
-    container.add(this)
-    return this
+fun <T: IdentifiableItem> T.insertIntoIdMap(idManager: IdManager): T {
+    return this.apply {
+        id = idManager.add(this)
+    }
 }
 
-inline fun <reified T: IdentifiableItem> T.insert(idManager: IdManager, container: KMutableProperty0<ArrayList<T>?>): T {
-    this.id = idManager.add(this)
+fun <T: IdentifiableItem> T.insertIntoContainer(container: KMutableProperty0<ArrayList<T>?>): T {
     container.init().add(this)
     return this
 }
 
-interface DeepCopyable {
-    fun deepCopy(other: Any)
-    fun newInstance(): DeepCopyable
+fun <T: IdentifiableItem> T.register(idManager: IdManager, container: KMutableProperty0<ArrayList<T>?>): T {
+    return this.apply {
+        insertIntoIdMap(idManager)
+        insertIntoContainer(container)
+    }
 }
 
-abstract class IdentifiableItem: DeepCopyable {
+fun <T: IdentifiableItem> T.unregister(idManager: IdManager, container: KMutableProperty0<ArrayList<T>?>) {
+    idManager.remove(this)
+    container.init().remove(this)
+}
+
+abstract class IdentifiableItem {
+    var ordinal: Int? = null
     var id: String? = null
 
-    override fun deepCopy(other: Any) {
+    open fun deepCopy(other: Any, idManager: IdManager) {
         if( other is IdentifiableItem ) {
             this.id = other.id
+            this.insertIntoIdMap(idManager)
         } else {
             throw Exception()
         }
     }
+
+    abstract fun newInstance(): IdentifiableItem
 }
 
 abstract class NameableItem: IdentifiableItem() {
     var name: String? = null
     var description: String? = null
 
-    override fun deepCopy(other: Any) {
-        super.deepCopy(other)
+    override fun deepCopy(other: Any, idManager: IdManager) {
+        super.deepCopy(other, idManager)
 
         if( other is NameableItem ) {
             this.name = other.name
@@ -77,17 +89,16 @@ abstract class NarrativeItem: NameableItem() {
 }
 
 abstract class AdventureItem: NarrativeItem() {
-    var ordinal: Int? = null
     var hide: Boolean? = null
     var requirements: ArrayList<RequirementTree>? = null
 
-    override fun deepCopy(other: Any) {
-        super.deepCopy(other)
+    override fun deepCopy(other: Any, idManager: IdManager) {
+        super.deepCopy(other, idManager)
 
         if( other is AdventureItem ) {
             this.ordinal = other.ordinal
             this.hide = other.hide
-            this.requirements = deepCopyList(other.requirements)
+            this.requirements = deepCopyList(other.requirements, idManager)
         } else {
             throw Exception()
         }

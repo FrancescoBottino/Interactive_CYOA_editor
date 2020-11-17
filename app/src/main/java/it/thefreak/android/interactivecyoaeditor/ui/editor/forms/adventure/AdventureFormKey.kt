@@ -1,16 +1,10 @@
 package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.MenuRes
-import androidx.annotation.StringRes
 import com.zhuinden.simplestack.ServiceBinder
-import com.zhuinden.simplestackextensions.fragments.DefaultFragmentKey
 import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 import com.zhuinden.simplestackextensions.servicesktx.add
 import it.thefreak.android.interactivecyoaeditor.ui.editor.FragmentKey
-import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
-import it.thefreak.android.interactivecyoaeditor.R
 
 @Parcelize
 class AdventureFormKey: FragmentKey(), DefaultServiceProvider.HasServices {

@@ -1,12 +1,6 @@
 package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.MenuRes
-import androidx.annotation.StringRes
-import com.zhuinden.simplestackextensions.fragments.DefaultFragmentKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.FragmentKey
-import it.thefreak.android.interactivecyoaeditor.R
-import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

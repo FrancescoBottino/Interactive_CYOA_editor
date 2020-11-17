@@ -1,7 +1,6 @@
 package it.thefreak.android.interactivecyoaeditor
 
 import android.os.Bundle
-import android.view.Menu
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.SimpleStateChanger
 import com.zhuinden.simplestack.StateChange
@@ -9,7 +8,6 @@ import com.zhuinden.simplestack.navigator.Navigator
 import com.zhuinden.simplestackextensions.fragments.DefaultFragmentStateChanger
 import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 import it.thefreak.android.interactivecyoaeditor.databinding.ActivityMainBinding
-import it.thefreak.android.interactivecyoaeditor.ui.editor.FragmentKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormKey
 
 

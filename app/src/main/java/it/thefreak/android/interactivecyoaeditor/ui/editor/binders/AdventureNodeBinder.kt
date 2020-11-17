@@ -6,27 +6,27 @@ import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
 import it.thefreak.android.interactivecyoaeditor.hideIf
-import it.thefreak.android.interactivecyoaeditor.model.PointState
+import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.show
 
-class PointStateBinder constructor(
-    pointState: PointState,
-    listener: ListItemListener<PointStateBinder>? = null
-) : ListItemEditorBinder<PointState, PointStateBinder>(pointState, listener), IDraggable {
+class AdventureNodeBinder constructor(
+        adventureItem: AdventureNode,
+        listener: ListItemListener<AdventureNodeBinder>? = null
+) : ListItemEditorBinder<AdventureNode, AdventureNodeBinder>(adventureItem, listener), IDraggable {
 
     class ViewHolder(
-        private val root: View
-    ): FastAdapter.ViewHolder<PointStateBinder>(root) {
+            private val root: View
+    ): FastAdapter.ViewHolder<AdventureNodeBinder>(root) {
         private val binding: ListItemGenericBinding = ListItemGenericBinding.bind(root)
 
         init {
             binding.icon.visibility = View.GONE
         }
 
-        override fun bindView(item: PointStateBinder, payloads: List<Any>) {
+        override fun bindView(item: AdventureNodeBinder, payloads: List<Any>) {
             binding.titleLabel.text = if(item.content.name.isNullOrBlank()) {
-                root.context.getString(R.string.unnamed_points)
+                root.context.getString(R.string.unnamed_adventure_node)
             } else item.content.name!!
 
             binding.overtext.hideIf {
@@ -42,7 +42,7 @@ class PointStateBinder constructor(
             binding.content.onClick { item.listener?.onItemClick(item) }
         }
 
-        override fun unbindView(item: PointStateBinder) {
+        override fun unbindView(item: AdventureNodeBinder) {
             binding.titleLabel.text = ""
             binding.overtext.show()
             binding.overtext.text = ""
@@ -57,9 +57,10 @@ class PointStateBinder constructor(
     override val layoutRes: Int
         get() = R.layout.list_item_generic
     override val type: Int
-        get() = R.id.point_state_list_item
+        get() = R.id.adventure_node_list_item
 
     override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
     override val isDraggable: Boolean
         get() = true
+
 }

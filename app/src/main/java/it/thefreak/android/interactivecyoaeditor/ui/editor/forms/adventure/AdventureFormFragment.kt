@@ -7,10 +7,9 @@ import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureFormFragmentBinding
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
-import it.thefreak.android.interactivecyoaeditor.model.PointState
-import it.thefreak.android.interactivecyoaeditor.model.insert
+import it.thefreak.android.interactivecyoaeditor.model.*
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ItemsListEditorListener
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointStateFormKey
@@ -20,6 +19,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
 
     private lateinit var binding: AdventureFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager
+    private lateinit var adventureItemsListManager: AdventureNodesListManager
 
     private lateinit var adventure: Adventure
 
@@ -61,29 +61,61 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 adventure.author = it
             }
 
-            pointsListManager = PointsListManager(context, pointsList, object : ItemsListEditorListener<PointState> {
-                override fun onItemDelete(item: PointState) {
-                    adventure.initialPoints?.remove(item)
-                    adventureFormModel.idManager.idMap.remove(item.id)
-                }
+            pointsListManager = PointsListManager(
+                context,
+                pointsList,
+                object : ItemsListEditorListener<PointState> {
+                    override fun onItemDelete(item: PointState): Boolean {
+                        item.unregister(adventureFormModel.idManager, adventure::initialPoints)
+                        return true
+                    }
 
-                override fun onItemClick(item: PointState) {
-                    backstack.goTo(PointStateFormKey(item.id!!))
-                }
+                    override fun onItemClick(item: PointState) {
+                        backstack.goTo(PointStateFormKey(item.id!!))
+                    }
 
-                override fun onItemCopy(item: PointState): PointState {
-                    return PointState().apply {
-                        deepCopy(item)
-                        insert(adventureFormModel.idManager, adventure::initialPoints)
+                    override fun onItemCopy(item: PointState): PointState? {
+                        return PointState().apply {
+                            deepCopy(item, adventureFormModel.idManager)
+                            this.insertIntoContainer(adventure::initialPoints)
+                        }
+                    }
+
+                    override fun onNewItem(): PointState? {
+                        return PointState().apply {
+                            register(adventureFormModel.idManager, adventure::initialPoints)
+                        }
                     }
                 }
+            )
 
-                override fun onNewItem(): PointState {
-                    return PointState().apply {
-                        insert(adventureFormModel.idManager, adventure::initialPoints)
+            adventureItemsListManager = AdventureNodesListManager(
+                context,
+                adventureNodesList,
+                object : ItemsListEditorListener<AdventureNode> {
+                    override fun onItemDelete(item: AdventureNode): Boolean {
+                        item.unregister(adventureFormModel.idManager, adventure::adventureNodesList)
+                        return true
+                    }
+
+                    override fun onItemClick(item: AdventureNode) {
+                        //TODO OPEN FRAGMENT
+                    }
+
+                    override fun onItemCopy(item: AdventureNode): AdventureNode? {
+                        return AdventureNode().apply {
+                            deepCopy(item, adventureFormModel.idManager)
+                            this.insertIntoContainer(adventure::adventureNodesList)
+                        }
+                    }
+
+                    override fun onNewItem(): AdventureNode? {
+                        return AdventureNode().apply {
+                            register(adventureFormModel.idManager, adventure::adventureNodesList)
+                        }
                     }
                 }
-            })
+            )
         }
     }
 
@@ -100,6 +132,10 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
 
             adventure.initialPoints?.let { list ->
                 pointsListManager.set(list)
+            }
+
+            adventure.adventureNodesList?.let { list ->
+                adventureItemsListManager.set(list)
             }
         }
     }

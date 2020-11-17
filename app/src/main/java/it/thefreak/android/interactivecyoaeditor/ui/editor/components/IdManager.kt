@@ -1,7 +1,5 @@
 package it.thefreak.android.interactivecyoaeditor.ui.editor.components
 
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
-import it.thefreak.android.interactivecyoaeditor.model.AdventureItem
 import it.thefreak.android.interactivecyoaeditor.model.IdentifiableItem
 
 class IdManager {
@@ -34,6 +32,11 @@ class IdManager {
         return getNewId().apply {
             idMap[this] = obj
         }
+    }
+
+    fun remove(obj: IdentifiableItem) {
+        if(!idMap.containsValue(obj)) throw Exception()
+        idMap.remove(obj.id)
     }
 
     fun editId(oldId: String, newId: String) {

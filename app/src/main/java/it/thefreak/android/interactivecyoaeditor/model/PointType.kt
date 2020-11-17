@@ -1,10 +1,12 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.IdManager
+
 open class PointType: AdventureItem() {
     var canGoUnderZero: Boolean? = null
 
-    override fun deepCopy(other: Any) {
-        super.deepCopy(other)
+    override fun deepCopy(other: Any, idManager: IdManager) {
+        super.deepCopy(other, idManager)
 
         if( other is PointType ) {
             this.canGoUnderZero = other.canGoUnderZero
@@ -13,5 +15,5 @@ open class PointType: AdventureItem() {
         }
     }
 
-    override fun newInstance(): DeepCopyable = PointType()
+    override fun newInstance(): IdentifiableItem = PointType()
 }

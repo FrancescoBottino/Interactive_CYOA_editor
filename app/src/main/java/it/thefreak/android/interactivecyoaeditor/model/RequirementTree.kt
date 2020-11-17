@@ -1,9 +1,11 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-open class RequirementTree: IdentifiableItem(), DeepCopyable {
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.IdManager
+
+open class RequirementTree: IdentifiableItem() {
     var root: Requirement? = null
 
-    abstract class Requirement: IdentifiableItem(), DeepCopyable {
+    abstract class Requirement: IdentifiableItem() {
     }
 
     open class ChoiceRequirement (
@@ -13,10 +15,10 @@ open class RequirementTree: IdentifiableItem(), DeepCopyable {
         enum class ChoiceRequirementType {
             MUST_HAVE, MUST_NOT_HAVE
         }
-        override fun deepCopy(other: Any) {
+        override fun deepCopy(other: Any, idManager: IdManager) {
             TODO("Not yet implemented")
         }
-        override fun newInstance(): DeepCopyable {
+        override fun newInstance(): IdentifiableItem {
             TODO("Not yet implemented")
         }
     }
@@ -28,10 +30,10 @@ open class RequirementTree: IdentifiableItem(), DeepCopyable {
         enum class PointsRequirementType {
             EQUAL, LESS_THAN, LESS_OR_EQUAL_THAN, MORE_THAN, MORE_OR_EQUAL_THAN
         }
-        override fun deepCopy(other: Any) {
+        override fun deepCopy(other: Any, idManager: IdManager) {
             TODO("Not yet implemented")
         }
-        override fun newInstance(): DeepCopyable {
+        override fun newInstance(): IdentifiableItem {
             TODO("Not yet implemented")
         }
     }
@@ -42,25 +44,25 @@ open class RequirementTree: IdentifiableItem(), DeepCopyable {
         enum class RequirementLogicNodeType {
             AND, OR, NOT
         }
-        override fun deepCopy(other: Any) {
+        override fun deepCopy(other: Any, idManager: IdManager) {
             TODO("Not yet implemented")
         }
-        override fun newInstance(): DeepCopyable {
+        override fun newInstance(): IdentifiableItem {
             TODO("Not yet implemented")
         }
     }
     open class RequirementLogicNodeNot(
             var child: Requirement
     ) : RequirementLogicNode(RequirementLogicNodeType.NOT, arrayListOf(child)) {
-        override fun deepCopy(other: Any) {
+        override fun deepCopy(other: Any, idManager: IdManager) {
             TODO("Not yet implemented")
         }
-        override fun newInstance(): DeepCopyable {
+        override fun newInstance(): IdentifiableItem {
             TODO("Not yet implemented")
         }
     }
 
-    override fun deepCopy(other: Any) {
+    override fun deepCopy(other: Any, idManager: IdManager) {
         TODO("Not yet implemented")
         /*
         super.deepCopy(other)
@@ -77,5 +79,7 @@ open class RequirementTree: IdentifiableItem(), DeepCopyable {
 
          */
     }
-    override fun newInstance(): DeepCopyable = RequirementTree()
+    override fun newInstance(): IdentifiableItem {
+        TODO("Not yet implemented")
+    }
 }

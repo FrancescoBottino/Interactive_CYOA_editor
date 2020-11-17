@@ -12,7 +12,7 @@
     <string name="author_field_hint">Author</string>
     <string name="points_list_view_title">Points</string>
     <string name="adventure_nodes_list_view_title">Adventure nodes</string>
-    <string name="point_type_binder_id_label">ID: %1$s</string>
+    <string name="binder_id_label">ID: %1$s</string>
     <string name="initial_amount_field_hint">Initial amount</string>
     <string name="adventure_form_fragment_title">Adventure editor</string>
     <string name="point_state_form_fragment_title">Points editor</string>
@@ -20,4 +20,5 @@
     <string name="point_type_is_hidden_label">Is hidden</string>
     <string name="point_type_requirements_label">Show if</string>
     <string name="unnamed_points">Unnamed Points</string>
+    <string name="unnamed_adventure_node">Unnamed Node</string>
 </resources>
