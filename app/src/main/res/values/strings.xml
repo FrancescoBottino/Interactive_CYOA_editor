@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Interactive CYOA editor</string>
+    <string name="items_list_editor_title">Title</string>
+    <string name="items_list_editor_add">Add</string>
+    <string name="generic_list_item_overtext">overtext</string>
+    <string name="generic_list_item_title">Title</string>
+    <string name="generic_list_item_subtext">subtext</string>
+    <string name="name_field_hint">Name</string>
+    <string name="description_field_hint">Description</string>
+    <string name="version_name_field_hint">Version name</string>
+    <string name="version_code_field_hint">Version code</string>
+    <string name="author_field_hint">Author</string>
+    <string name="points_list_view_title">Points</string>
+    <string name="adventure_nodes_list_view_title">Adventure nodes</string>
+    <string name="point_type_binder_name_label">Name: %1$s</string>
+    <string name="point_type_binder_amount_label">Amount: %1$s</string>
+    <string name="initial_amount_field_hint">Initial amount</string>
+    <string name="adventure_form_fragment_title">Adventure editor</string>
+    <string name="point_state_form_fragment_title">Points editor</string>
+</resources>
