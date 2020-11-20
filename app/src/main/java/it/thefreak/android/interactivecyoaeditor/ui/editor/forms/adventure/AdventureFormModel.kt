@@ -4,6 +4,7 @@ import android.content.Context
 import com.zhuinden.simplestack.Backstack
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
+import it.thefreak.android.interactivecyoaeditor.model.deepRegisterItem
 
 class AdventureFormModel(
     private val adventureFormKey: AdventureFormKey,
@@ -14,6 +15,7 @@ class AdventureFormModel(
         return if(adventure == null) {
             loadAction(ctx).apply {
                 adventure = this
+                deepRegisterItem(idManager)
             }
         } else {
             adventure!!

@@ -43,7 +43,14 @@ fun <T:Item> T.deepCopyItem(type: KClass<T>, idManager: IdManager): T {
                     else -> when(value) {
                         is Item -> parameter to value.deepCopyItem(idManager)
                         is String -> parameter to String(value.toCharArray())
-                        is Int, Long, Short, Byte, Boolean, Double, Float, Char -> parameter to value
+                        is Int -> parameter to value
+                        is Long -> parameter to value
+                        is Short -> parameter to value
+                        is Byte -> parameter to value
+                        is Boolean -> parameter to value
+                        is Double -> parameter to value
+                        is Float -> parameter to value
+                        is Char -> parameter to value
                         is Enum<*> -> parameter to value
                         else -> throw Exception("Unknown parameter type (${value::class})")
                     }
