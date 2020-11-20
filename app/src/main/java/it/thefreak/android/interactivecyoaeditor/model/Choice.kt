@@ -16,5 +16,5 @@ data class Choice(
         var automaticallyActivated: Boolean? = null,
         var buyLimit: Int? = null,
         var costs: ArrayList<Cost>? = null,
-        var subChoices: ArrayList<AdventureNode>? = null,
+        var subNodes: ArrayList<AdventureNode>? = null,
 ): IdentifiableItem, ListableItem, NarrativeItem, RequirementHolderItem, StylableItem

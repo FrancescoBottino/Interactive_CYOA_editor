@@ -6,17 +6,17 @@ import com.zhuinden.simplestackextensions.fragments.KeyedFragment
 import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
-import it.thefreak.android.interactivecyoaeditor.databinding.PointStateFormFragmentBinding
+import it.thefreak.android.interactivecyoaeditor.databinding.PointTypeFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
 
-class PointTypeFormFragment: KeyedFragment(R.layout.point_state_form_fragment) {
+class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
     private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
 
-    private lateinit var binding: PointStateFormFragmentBinding
+    private lateinit var binding: PointTypeFormFragmentBinding
 
     private lateinit var pointType: PointType
 
@@ -27,7 +27,7 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_state_form_fragment) {
             pointType = adventureFormModel.idManager.idMap[pointStateId] as PointType
         }
 
-        binding = PointStateFormFragmentBinding.bind(view)
+        binding = PointTypeFormFragmentBinding.bind(view)
         with(binding) {
             topAppBar.setNavigationOnClickListener {
                 backstack.goBack()
