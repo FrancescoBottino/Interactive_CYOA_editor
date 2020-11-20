@@ -4,8 +4,8 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.FragmentKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class PointStateFormKey(val pointStateId: String): FragmentKey() {
-    override fun instantiateFragment() = PointStateFormFragment()
+class PointTypeFormKey(val pointStateId: String): FragmentKey() {
+    override fun instantiateFragment() = PointTypeFormFragment()
     override fun getFragmentTag(): String = toString()
 
     /*

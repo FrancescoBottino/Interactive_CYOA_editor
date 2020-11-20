@@ -8,23 +8,23 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.PointStateFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
-import it.thefreak.android.interactivecyoaeditor.model.PointState
+import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
 
-class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) {
+class PointTypeFormFragment: KeyedFragment(R.layout.point_state_form_fragment) {
     private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
 
     private lateinit var binding: PointStateFormFragmentBinding
 
-    private lateinit var pointState: PointState
+    private lateinit var pointType: PointType
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(getKey<PointStateFormKey>()) {
-            pointState = adventureFormModel.idManager.idMap[pointStateId] as PointState
+        with(getKey<PointTypeFormKey>()) {
+            pointType = adventureFormModel.idManager.idMap[pointStateId] as PointType
         }
 
         binding = PointStateFormFragmentBinding.bind(view)
@@ -34,20 +34,20 @@ class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) 
             }
 
             nameField.onTextChanged {
-                pointState.name = it
+                pointType.name = it
             }
             descriptionField.onTextChanged {
-                pointState.description = it
+                pointType.description = it
             }
             initialAmountField.onTextChanged {
                 if(it.isNotBlank())
-                    pointState.amount = it.toInt()
+                    pointType.initialAmount = it.toInt()
             }
             canGoUnderZeroSwitchField.setOnCheckedChangeListener { _, checked ->
-                pointState.canGoUnderZero = checked
+                pointType.canGoUnderZero = checked
             }
             isHiddenSwitchField.setOnCheckedChangeListener { _, checked ->
-                pointState.hide = checked
+                pointType.hide = checked
 
                 if(checked) {
                     requirementsList.show()
@@ -56,22 +56,22 @@ class PointStateFormFragment: KeyedFragment(R.layout.point_state_form_fragment) 
                 }
             }
 
-            //TODO list listeners
+            //TODO requirements list listeners
         }
     }
 
     override fun onResume() {
         super.onResume()
         with(binding) {
-            nameField.setText(pointState.name)
-            descriptionField.setText(pointState.description)
-            pointState.amount?.let {
+            nameField.setText(pointType.name)
+            descriptionField.setText(pointType.description)
+            pointType.initialAmount?.let {
                 initialAmountField.setText(it.toString())
             }
-            (pointState.canGoUnderZero?:false).let {
+            (pointType.canGoUnderZero?:false).let {
                 canGoUnderZeroSwitchField.isChecked = it
             }
-            (pointState.hide?:false).let {
+            (pointType.hide?:false).let {
                 isHiddenSwitchField.isChecked = it
                 if(it) {
                     requirementsList.show()

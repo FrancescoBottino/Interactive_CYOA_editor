@@ -17,8 +17,18 @@
     <string name="adventure_form_fragment_title">Adventure editor</string>
     <string name="point_state_form_fragment_title">Points editor</string>
     <string name="point_type_can_go_under_zero_label">Can go under zero</string>
-    <string name="point_type_is_hidden_label">Is hidden</string>
-    <string name="point_type_requirements_label">Show if</string>
+    <string name="item_is_hidden_label">Is hidden</string>
+    <string name="item_show_requirements_list_field_label">Show if</string>
     <string name="unnamed_points">Unnamed Points</string>
     <string name="unnamed_adventure_node">Unnamed Node</string>
+    <string name="has_choices_field_label">Has choices</string>
+    <string name="choices_select_limit_label">Choice select limit</string>
+    <string name="title_field_label">Title</string>
+    <string name="paragraph_field_label">Paragraph</string>
+    <string name="choice_type_field_label">Choice type</string>
+    <string name="node_specific_points_list_title_label">Node specific points</string>
+    <string name="adventure_node_form_fragment_title">Adventure node editor</string>
+    <string name="choice_type_optional">Optional</string>
+    <string name="choice_type_required">Required</string>
+    <string name="choices_list_editor_title_label">Choices</string>
 </resources>

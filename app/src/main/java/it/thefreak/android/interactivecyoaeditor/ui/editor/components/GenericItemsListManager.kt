@@ -9,13 +9,13 @@ import com.mikepenz.fastadapter.drag.ItemTouchCallback
 import com.mikepenz.fastadapter.drag.SimpleDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
 import com.mikepenz.itemanimators.AlphaInAnimator
-import it.thefreak.android.interactivecyoaeditor.model.IdentifiableItem
+import it.thefreak.android.interactivecyoaeditor.model.ListableItem
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.ListItemEditorBinder
 import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.ListItemListener
 import it.thefreak.android.interactivecyoaeditor.views.ItemsListEditor
 
-abstract class GenericItemsListManager<T: IdentifiableItem, B: ListItemEditorBinder<T, B>> (
+abstract class GenericItemsListManager<T: ListableItem, B: ListItemEditorBinder<T, B>> (
         ctx: Context?,
         itemsListEditor: ItemsListEditor,
         val binderFactory: (T, ListItemListener<B>)-> B,

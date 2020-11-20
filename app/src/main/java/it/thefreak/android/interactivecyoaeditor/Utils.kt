@@ -6,18 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
-import kotlin.reflect.KMutableProperty0
-
-fun <T> KMutableProperty0<ArrayList<T>?>.init(): ArrayList<T> {
-    return this.let {
-        var arr = this.get()
-        if(arr == null) {
-            arr = ArrayList<T>()
-            it.set(arr)
-        }
-        arr
-    }
-}
 
 fun View.onClick(clickListener: ((View) -> Unit)?) {
     setOnClickListener(clickListener)

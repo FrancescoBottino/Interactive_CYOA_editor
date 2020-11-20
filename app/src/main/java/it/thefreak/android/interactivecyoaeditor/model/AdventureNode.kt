@@ -1,29 +1,25 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.IdManager
+import kotlinx.serialization.Serializable
 
-class AdventureNode: AdventureItem() {
-    enum class ChoicesType {
+@Serializable
+data class AdventureNode(
+        override var id: String? = null,
+        override var ordinal: Int? = null,
+        override var name: String? = null,
+        override var description: String? = null,
+        override var image: String? = null,
+        override var icon: String? = null,
+        override var style: Style? = null,
+        override var hide: Boolean? = null,
+        override var requirements: ArrayList<Requirement>? = null,
+        var nodeSpecificPoints: ArrayList<PointType>? = null,
+        var hasChoices: Boolean? = null,
+        var choiceLimit: Int? = null,
+        var choiceGroupType: ChoicesGroupType? = null,
+        var choicesList: ArrayList<Choice>? = null,
+): IdentifiableItem, ListableItem, NarrativeItem, RequirementHolderItem, StylableItem {
+    enum class ChoicesGroupType {
         OPTIONAL, REQUIRED
     }
-
-    var nodeSpecificPoints: ArrayList<PointState>? = null
-    var choiceLimit: Int? = null
-    var choiceType: ChoicesType = ChoicesType.OPTIONAL
-    var choicesList: ArrayList<Choice>? = null
-
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        super.deepCopy(other, idManager)
-
-        if( other is AdventureNode ) {
-            this.choiceLimit = other.choiceLimit
-            this.choiceType = other.choiceType
-            this.choicesList = deepCopyList(other.choicesList, idManager)
-            this.nodeSpecificPoints = deepCopyList(other.nodeSpecificPoints, idManager)
-        } else {
-            throw Exception()
-        }
-    }
-
-    override fun newInstance(): IdentifiableItem = AdventureNode()
 }

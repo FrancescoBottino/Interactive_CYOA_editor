@@ -6,25 +6,25 @@ import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
 import it.thefreak.android.interactivecyoaeditor.hideIf
-import it.thefreak.android.interactivecyoaeditor.model.PointState
+import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.show
 
-class PointStateBinder constructor(
-    pointState: PointState,
-    listener: ListItemListener<PointStateBinder>? = null
-) : ListItemEditorBinder<PointState, PointStateBinder>(pointState, listener), IDraggable {
+class PointTypeBinder constructor(
+        pointType: PointType,
+        listener: ListItemListener<PointTypeBinder>? = null
+) : ListItemEditorBinder<PointType, PointTypeBinder>(pointType, listener), IDraggable {
 
     class ViewHolder(
         private val root: View
-    ): FastAdapter.ViewHolder<PointStateBinder>(root) {
+    ): FastAdapter.ViewHolder<PointTypeBinder>(root) {
         private val binding: ListItemGenericBinding = ListItemGenericBinding.bind(root)
 
         init {
             binding.icon.visibility = View.GONE
         }
 
-        override fun bindView(item: PointStateBinder, payloads: List<Any>) {
+        override fun bindView(item: PointTypeBinder, payloads: List<Any>) {
             binding.titleLabel.text = if(item.content.name.isNullOrBlank()) {
                 root.context.getString(R.string.unnamed_points)
             } else item.content.name!!
@@ -42,7 +42,7 @@ class PointStateBinder constructor(
             binding.content.onClick { item.listener?.onItemClick(item) }
         }
 
-        override fun unbindView(item: PointStateBinder) {
+        override fun unbindView(item: PointTypeBinder) {
             binding.titleLabel.text = ""
             binding.overtext.show()
             binding.overtext.text = ""

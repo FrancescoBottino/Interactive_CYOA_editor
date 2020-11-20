@@ -1,19 +1,18 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.IdManager
+import kotlinx.serialization.Serializable
 
-open class PointType: AdventureItem() {
-    var canGoUnderZero: Boolean? = null
-
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        super.deepCopy(other, idManager)
-
-        if( other is PointType ) {
-            this.canGoUnderZero = other.canGoUnderZero
-        } else {
-            throw Exception()
-        }
-    }
-
-    override fun newInstance(): IdentifiableItem = PointType()
-}
+@Serializable
+data class PointType(
+        override var id: String? = null,
+        override var ordinal: Int? = null,
+        override var name: String? = null,
+        override var description: String? = null,
+        override var image: String? = null,
+        override var icon: String? = null,
+        override var style: Style? = null,
+        override var hide: Boolean? = null,
+        override var requirements: ArrayList<Requirement>? = null,
+        var canGoUnderZero: Boolean? = null,
+        var initialAmount: Int? = null,
+): IdentifiableItem, ListableItem, NarrativeItem, RequirementHolderItem, StylableItem

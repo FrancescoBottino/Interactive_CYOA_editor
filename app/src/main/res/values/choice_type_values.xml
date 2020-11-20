@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="choice_types_values">
+        <item>@string/choice_type_optional</item>
+        <item>@string/choice_type_required</item>
+    </string-array>
+</resources>
