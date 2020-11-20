@@ -31,4 +31,10 @@
     <string name="choice_type_optional">Optional</string>
     <string name="choice_type_required">Required</string>
     <string name="choices_list_editor_title_label">Choices</string>
+    <string name="choice_form_fragment_title">Choice editor</string>
+    <string name="automatically_activated_field_label">Automatically activated?</string>
+    <string name="choice_buy_limit_label">Times can buy</string>
+    <string name="costs_list_title_label">Costs</string>
+    <string name="requirements_list_title_label">Requirements</string>
+    <string name="sub_nodes_list_title_label">Sub-nodes</string>
 </resources>
