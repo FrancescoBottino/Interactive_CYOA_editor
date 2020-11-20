@@ -10,10 +10,9 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureNodeFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
-import it.thefreak.android.interactivecyoaeditor.model.*
+import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ItemsListEditorListener
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
@@ -57,30 +56,11 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 pointsListManager = PointsListManager(
                     context,
                     list,
-                    object : ItemsListEditorListener<PointType> {
-                        override fun onItemDelete(item: PointType): Boolean {
-                            item.deepDeleteItem(adventureFormModel.idManager, adventureNode.nodeSpecificPoints)
-                            return true
-                        }
-
-                        override fun onItemClick(item: PointType) {
-                            backstack.goTo(PointTypeFormKey(item.id!!))
-                        }
-
-                        override fun onItemCopy(item: PointType): PointType? {
-                            return item.deepCopyItem(adventureFormModel.idManager).apply {
-                                (adventureNode::nodeSpecificPoints).init().add(this)
-                            }
-                        }
-
-                        override fun onNewItem(): PointType? {
-                            return PointType().apply {
-                                assignNewId(adventureFormModel.idManager)
-                                (adventureNode::nodeSpecificPoints).init().add(this)
-                            }
-                        }
-                    }
-                )
+                    adventureFormModel.idManager,
+                    adventureNode::nodeSpecificPoints,
+                ) { item ->
+                    backstack.goTo(PointTypeFormKey(item.id!!))
+                }
             }
             choiceBuyLimitField.onTextChanged {
                 if(it.isNotBlank())

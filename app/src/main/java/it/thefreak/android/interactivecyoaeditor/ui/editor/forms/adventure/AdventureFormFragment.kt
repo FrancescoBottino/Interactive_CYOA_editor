@@ -7,10 +7,9 @@ import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureFormFragmentBinding
-import it.thefreak.android.interactivecyoaeditor.model.*
+import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ItemsListEditorListener
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
@@ -63,61 +62,35 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 adventure.author = it
             }
 
-            pointsListManager = PointsListManager(
-                context,
-                pointsList,
-                object : ItemsListEditorListener<PointType> {
-                    override fun onItemDelete(item: PointType): Boolean {
-                        item.deepDeleteItem(adventureFormModel.idManager, adventure::initialPoints)
-                        return true
-                    }
-
-                    override fun onItemClick(item: PointType) {
-                        backstack.goTo(PointTypeFormKey(item.id!!))
-                    }
-
-                    override fun onItemCopy(item: PointType): PointType? {
-                        return item.deepCopyItem(adventureFormModel.idManager).apply {
-                            (adventure::initialPoints).init().add(this)
-                        }
-                    }
-
-                    override fun onNewItem(): PointType? {
-                        return PointType().apply {
-                            assignNewId(adventureFormModel.idManager)
-                            (adventure::initialPoints).init().add(this)
-                        }
-                    }
+            pointsList.let { list ->
+                pointsListManager = PointsListManager(
+                    context,
+                    list,
+                    adventureFormModel.idManager,
+                    adventure::initialPoints,
+                ) { item ->
+                    backstack.goTo(PointTypeFormKey(item.id!!))
                 }
-            )
+            }
 
+            adventureNodesList.let { list ->
+                adventureItemsListManager = AdventureNodesListManager(
+                    context,
+                    list,
+                    adventureFormModel.idManager,
+                    adventure::adventureNodesList,
+                ) {item ->
+                    backstack.goTo(AdventureNodeFormKey(item.id!!))
+                }
+            }
             adventureItemsListManager = AdventureNodesListManager(
                 context,
                 adventureNodesList,
-                object : ItemsListEditorListener<AdventureNode> {
-                    override fun onItemDelete(item: AdventureNode): Boolean {
-                        item.deepDeleteItem(adventureFormModel.idManager, adventure.adventureNodesList)
-                        return true
-                    }
-
-                    override fun onItemClick(item: AdventureNode) {
-                        backstack.goTo(AdventureNodeFormKey(item.id!!))
-                    }
-
-                    override fun onItemCopy(item: AdventureNode): AdventureNode? {
-                        return item.deepCopyItem(adventureFormModel.idManager).apply {
-                            (adventure::adventureNodesList).init().add(this)
-                        }
-                    }
-
-                    override fun onNewItem(): AdventureNode? {
-                        return AdventureNode().apply {
-                            assignNewId(adventureFormModel.idManager)
-                            (adventure::adventureNodesList).init().add(this)
-                        }
-                    }
-                }
-            )
+                adventureFormModel.idManager,
+                adventure::adventureNodesList,
+            ) {item ->
+                backstack.goTo(AdventureNodeFormKey(item.id!!))
+            }
         }
     }
 
