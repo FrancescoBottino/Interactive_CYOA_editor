@@ -12,7 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/border_outline"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:paddingBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,13 +26,48 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_margin="8dp"
             android:overScrollMode="never"
+            android:visibility="visible"
             tools:itemCount="2"
             tools:listitem="@layout/list_item_generic" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/collapsed_view_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:visibility="visible"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="32dp"
+                app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/empty_list_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:visibility="visible"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="32dp"
+                android:paddingTop="12dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="12dp"
+                android:text="@string/empty_list_placeholder" />
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
     <TextView
@@ -43,7 +81,7 @@
         android:text="@string/items_list_editor_title"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/add_button"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/collapse_button"
         app:layout_constraintTop_toTopOf="@+id/add_button" />
 
     <com.google.android.material.button.MaterialButton
@@ -59,5 +97,26 @@
         app:iconGravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/collapse_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="@color/white"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:minWidth="0dp"
+        android:text=""
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_baseline_expand_more_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/add_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

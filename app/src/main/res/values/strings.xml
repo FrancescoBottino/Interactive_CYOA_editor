@@ -37,4 +37,5 @@
     <string name="costs_list_title_label">Costs</string>
     <string name="requirements_list_title_label">Requirements</string>
     <string name="sub_nodes_list_title_label">Sub-nodes</string>
+    <string name="empty_list_placeholder">Empty</string>
 </resources>
