@@ -24,7 +24,7 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         with(getKey<PointTypeFormKey>()) {
-            pointType = adventureFormModel.idManager.idMap[pointStateId] as PointType
+            pointType = adventureFormModel.idManager.idMap[pointTypeId] as PointType
         }
 
         binding = PointTypeFormFragmentBinding.bind(view)
@@ -42,6 +42,8 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
             initialAmountField.onTextChanged {
                 if(it.isNotBlank())
                     pointType.initialAmount = it.toInt()
+                else
+                    pointType.initialAmount = null
             }
             canGoUnderZeroSwitchField.setOnCheckedChangeListener { _, checked ->
                 pointType.canGoUnderZero = checked

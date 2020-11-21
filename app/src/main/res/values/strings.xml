@@ -38,4 +38,5 @@
     <string name="requirements_list_title_label">Requirements</string>
     <string name="sub_nodes_list_title_label">Sub-nodes</string>
     <string name="empty_list_placeholder">Empty</string>
+    <string name="unnamed_choice">Unnamed choice</string>
 </resources>

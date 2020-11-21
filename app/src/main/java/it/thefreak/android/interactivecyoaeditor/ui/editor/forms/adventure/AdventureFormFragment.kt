@@ -19,7 +19,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
 
     private lateinit var binding: AdventureFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager
-    private lateinit var adventureItemsListManager: AdventureNodesListManager
+    private lateinit var adventureNodesListManager: AdventureNodesListManager
 
     private lateinit var adventure: Adventure
 
@@ -57,6 +57,8 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
             versionCodeField.onTextChanged {
                 if(it.isNotBlank())
                     adventure.versionCode = it.toInt()
+                else
+                    adventure.versionCode = null
             }
             authorField.onTextChanged {
                 adventure.author = it
@@ -74,7 +76,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
             }
 
             adventureNodesList.let { list ->
-                adventureItemsListManager = AdventureNodesListManager(
+                adventureNodesListManager = AdventureNodesListManager(
                     context,
                     list,
                     adventureFormModel.idManager,
@@ -83,7 +85,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                     backstack.goTo(AdventureNodeFormKey(item.id!!))
                 }
             }
-            adventureItemsListManager = AdventureNodesListManager(
+            adventureNodesListManager = AdventureNodesListManager(
                 context,
                 adventureNodesList,
                 adventureFormModel.idManager,
@@ -110,7 +112,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
             }
 
             adventure.adventureNodesList?.let { list ->
-                adventureItemsListManager.set(list)
+                adventureNodesListManager.set(list)
             }
         }
     }

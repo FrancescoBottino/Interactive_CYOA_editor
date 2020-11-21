@@ -17,19 +17,4 @@ class AdventureFormKey: FragmentKey(), DefaultServiceProvider.HasServices {
             add(AdventureFormModel(getKey(), backstack))
         }
     }
-
-    /*
-    @IgnoredOnParcel
-    @get:StringRes
-    override val titleRes: Int = R.string.adventure_form_fragment_title
-
-    @IgnoredOnParcel
-    @get:DrawableRes
-    override val backNavigationIcon: Int? = null
-
-    @IgnoredOnParcel
-    @get:MenuRes
-    override val menuRes: Int? = R.menu.editor_menu
-
-     */
 }

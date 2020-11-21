@@ -2,4 +2,6 @@
 <resources>
     <item name="point_state_list_item" type="id" />
     <item name="adventure_node_list_item" type="id" />
+    <item name="choice_list_item" type="id" />
+    <item name="cost_list_item" type="id" />
 </resources>

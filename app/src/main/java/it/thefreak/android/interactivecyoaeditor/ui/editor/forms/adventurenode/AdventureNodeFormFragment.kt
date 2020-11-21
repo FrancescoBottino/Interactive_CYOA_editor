@@ -13,8 +13,10 @@ import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.choice.ChoiceFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
 
 class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_fragment) {
@@ -22,6 +24,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
 
     private lateinit var binding: AdventureNodeFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager
+    private lateinit var choicesListManager: ChoicesListManager
 
     private lateinit var adventureNode: AdventureNode
 
@@ -65,6 +68,8 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
             choiceBuyLimitField.onTextChanged {
                 if(it.isNotBlank())
                     adventureNode.choiceLimit = it.toInt()
+                else
+                    adventureNode.choiceLimit = null
             }
             choiceTypeSpinnerField.let { spinner ->
                 ArrayAdapter.createFromResource(
@@ -90,8 +95,15 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                     }
                 }
             }
-            choicesList.let {
-                //TODO
+            choicesList.let { list ->
+                choicesListManager = ChoicesListManager(
+                    context,
+                    list,
+                    adventureFormModel.idManager,
+                    adventureNode::choicesList
+                ) { item ->
+                    backstack.goTo(ChoiceFormKey(item.id!!))
+                }
             }
             isHiddenSwitchField.setOnCheckedChangeListener { _, checked ->
                 adventureNode.hide = checked
@@ -130,8 +142,8 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                     AdventureNode.ChoicesGroupType.REQUIRED -> choiceTypeSpinnerField.selection = 1
                 }
             }
-            adventureNode.choicesList?.let {
-                //TODO
+            adventureNode.choicesList?.let { list ->
+                choicesListManager.set(list)
             }
             (adventureNode.hide?:false).let {
                 isHiddenSwitchField.isChecked = it
