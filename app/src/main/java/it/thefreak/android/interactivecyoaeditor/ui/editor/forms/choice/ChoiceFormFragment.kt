@@ -10,13 +10,15 @@ import it.thefreak.android.interactivecyoaeditor.databinding.ChoiceFormFragmentB
 import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 
 class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
     private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
 
     private lateinit var binding: ChoiceFormFragmentBinding
-    //private lateinit var costsListManager: CostsListManager
+    private lateinit var costsListManager: CostsListManager
     private lateinit var adventureNodesListManager: AdventureNodesListManager
 
     private lateinit var choice: Choice
@@ -46,16 +48,30 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             buyLimitField.onTextChanged {
                 choice.buyLimit = if (it.isNotBlank()) it.toInt() else null
             }
-            costsList.let {
-                //todo
+            costsList.let { list ->
+                costsListManager = CostsListManager(
+                        context,
+                        list,
+                        adventureFormModel.idManager,
+                        choice::costs
+                ) {
+                    //TODO
+                }
             }
-            subNodesList.let {
-                //todo
+            subNodesList.let { list ->
+                adventureNodesListManager = AdventureNodesListManager(
+                        context,
+                        list,
+                        adventureFormModel.idManager,
+                        choice::subNodes
+                ) {
+                    backstack.goTo(AdventureNodeFormKey(it.id!!))
+                }
             }
             isHiddenSwitchField.setOnCheckedChangeListener { _, checked ->
                 choice.hide = checked
             }
-            requirementsList.let {
+            requirementsList.let { list ->
                 //todo
             }
         }
@@ -74,13 +90,11 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             }
 
             choice.costs?.let { list ->
-                //pointsListManager.set(list)
-                //todo
+                costsListManager.set(list)
             }
 
             choice.subNodes?.let { list ->
-                //adventureNodesListManager.set(list)
-                //todo
+                adventureNodesListManager.set(list)
             }
 
             (choice.hide?:false).let {

@@ -26,7 +26,7 @@
     <string name="title_field_label">Title</string>
     <string name="paragraph_field_label">Paragraph</string>
     <string name="choice_type_field_label">Choice type</string>
-    <string name="node_specific_points_list_title_label">Node specific points</string>
+    <string name="node_specific_points_list_title_label">Node points</string>
     <string name="adventure_node_form_fragment_title">Adventure node editor</string>
     <string name="choice_type_optional">Optional</string>
     <string name="choice_type_required">Required</string>
@@ -39,4 +39,6 @@
     <string name="sub_nodes_list_title_label">Sub-nodes</string>
     <string name="empty_list_placeholder">Empty</string>
     <string name="unnamed_choice">Unnamed choice</string>
+    <string name="undefined_cost">Undefined cost</string>
+    <string name="cost_list_title">%1$s %2$s</string>
 </resources>
