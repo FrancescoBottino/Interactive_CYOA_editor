@@ -4,6 +4,7 @@ import android.content.Context
 import com.zhuinden.simplestack.Backstack
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
+import it.thefreak.android.interactivecyoaeditor.model.deepLinkItem
 import it.thefreak.android.interactivecyoaeditor.model.deepRegisterItem
 
 class AdventureFormModel(
@@ -16,6 +17,7 @@ class AdventureFormModel(
             loadAction(ctx).apply {
                 adventure = this
                 deepRegisterItem(idManager)
+                deepLinkItem(idManager)
             }
         } else {
             adventure!!
