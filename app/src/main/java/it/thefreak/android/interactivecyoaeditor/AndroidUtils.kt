@@ -11,6 +11,13 @@ fun View.onClick(clickListener: ((View) -> Unit)?) {
     setOnClickListener(clickListener)
 }
 
+class Wrapper<T>(val item: T, val stringifier: (T)->String) {
+    override fun toString() = stringifier(item)
+}
+fun <T> List<T>.getAdapterWrapper(stringifier: (T)->String) : List<Wrapper<T>> {
+    return this.map{ Wrapper(it, stringifier) }
+}
+
 inline fun EditText.onTextChanged(crossinline textChangeListener: (String) -> Unit) {
     addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(editable: Editable) {

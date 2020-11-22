@@ -41,4 +41,7 @@
     <string name="unnamed_choice">Unnamed choice</string>
     <string name="undefined_cost">Undefined cost</string>
     <string name="cost_list_title">%1$s %2$s</string>
+    <string name="cost_modifiers_list_title_lable">Modifiers</string>
+    <string name="point_type_field_label">Points type</string>
+    <string name="cost_amount_field_hint">Cost amount</string>
 </resources>

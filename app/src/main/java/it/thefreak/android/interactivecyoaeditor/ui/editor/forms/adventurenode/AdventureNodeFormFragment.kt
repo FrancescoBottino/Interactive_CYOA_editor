@@ -66,10 +66,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 }
             }
             choiceBuyLimitField.onTextChanged {
-                if(it.isNotBlank())
-                    adventureNode.choiceLimit = it.toInt()
-                else
-                    adventureNode.choiceLimit = null
+                adventureNode.choiceLimit = it.toIntOrNull()
             }
             choiceTypeSpinnerField.let { spinner ->
                 ArrayAdapter.createFromResource(

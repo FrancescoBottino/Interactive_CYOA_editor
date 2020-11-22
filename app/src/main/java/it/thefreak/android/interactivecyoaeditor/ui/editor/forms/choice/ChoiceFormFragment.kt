@@ -13,6 +13,7 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureN
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.cost.CostFormKey
 
 class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
     private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
@@ -46,7 +47,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                 choice.automaticallyActivated = checked
             }
             buyLimitField.onTextChanged {
-                choice.buyLimit = if (it.isNotBlank()) it.toInt() else null
+                choice.buyLimit = it.toIntOrNull()
             }
             costsList.let { list ->
                 costsListManager = CostsListManager(
@@ -55,7 +56,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                         adventureFormModel.idManager,
                         choice::costs
                 ) {
-                    //TODO
+                    backstack.goTo(CostFormKey(it.id!!))
                 }
             }
             subNodesList.let { list ->

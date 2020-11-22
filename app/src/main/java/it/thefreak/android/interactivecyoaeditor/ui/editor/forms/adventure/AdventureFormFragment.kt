@@ -55,10 +55,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 adventure.versionName = it
             }
             versionCodeField.onTextChanged {
-                if(it.isNotBlank())
-                    adventure.versionCode = it.toInt()
-                else
-                    adventure.versionCode = null
+                adventure.versionCode = it.toIntOrNull()
             }
             authorField.onTextChanged {
                 adventure.author = it

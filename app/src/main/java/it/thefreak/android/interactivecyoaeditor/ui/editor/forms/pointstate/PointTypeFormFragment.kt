@@ -40,10 +40,7 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
                 pointType.description = it
             }
             initialAmountField.onTextChanged {
-                if(it.isNotBlank())
-                    pointType.initialAmount = it.toInt()
-                else
-                    pointType.initialAmount = null
+                pointType.initialAmount = it.toIntOrNull()
             }
             canGoUnderZeroSwitchField.setOnCheckedChangeListener { _, checked ->
                 pointType.canGoUnderZero = checked

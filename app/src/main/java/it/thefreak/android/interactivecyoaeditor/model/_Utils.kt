@@ -234,3 +234,13 @@ fun <T> KMutableProperty0<ArrayList<T>?>.init(): ArrayList<T> {
     }
 }
 
+@Suppress("UNCHECKED_CAST")
+fun <T> KMutableProperty0<T?>.getLinkedField(idManager: IdManager, itemIdField: KMutableProperty0<String?>): T? {
+    return this.get()
+            ?: itemIdField.get()?.let { id ->
+                idManager.idMap[id] as T?
+            }?.also { item ->
+                this.set(item)
+            }
+}
+

@@ -28,7 +28,11 @@ class CostBinder constructor(
                             item.content.pointType,
                             default = root.context.getString(R.string.undefined_cost)
                     ) { amount, pointType ->
-                        root.context.getString(R.string.cost_list_title, amount.toString(), pointType)
+                        root.context.getString(
+                                R.string.cost_list_title,
+                                amount.toString(),
+                                pointType.name ?: pointType.id!!
+                        )
                     }
 
             binding.titleLabel.text = displayedName

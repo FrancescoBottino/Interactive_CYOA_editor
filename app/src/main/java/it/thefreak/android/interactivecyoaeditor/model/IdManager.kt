@@ -52,7 +52,8 @@ class IdManager {
         idMap[newId] = item
     }
 
-    inline fun <reified T> findByType(): List<IdentifiableItem> {
-        return idMap.map { entry -> entry.value }.filter { item -> item is T }
+    @Suppress("UNCHECKED_CAST")
+    inline fun <reified T> findByType(): List<T> {
+        return idMap.map { entry -> entry.value }.filter { item -> item is T } as List<T>
     }
 }
