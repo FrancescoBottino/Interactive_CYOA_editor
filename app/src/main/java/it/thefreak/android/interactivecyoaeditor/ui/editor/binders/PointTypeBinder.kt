@@ -3,17 +3,16 @@ package it.thefreak.android.interactivecyoaeditor.ui.editor.binders
 import android.view.View
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
-import it.thefreak.android.interactivecyoaeditor.R
+import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.hideIf
 import it.thefreak.android.interactivecyoaeditor.model.PointType
-import it.thefreak.android.interactivecyoaeditor.onClick
-import it.thefreak.android.interactivecyoaeditor.show
+import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
+import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class PointTypeBinder constructor(
         pointType: PointType,
-        listener: ListItemListener<PointTypeBinder>? = null
-) : ListItemEditorBinder<PointType, PointTypeBinder>(pointType, listener), IDraggable {
+        listener: ItemsListEditorBinderListener<PointTypeBinder>? = null
+) : ItemsListEditorGenericBinder<PointType, PointTypeBinder>(pointType, listener), IDraggable {
 
     class ViewHolder(
         private val root: View
@@ -21,7 +20,7 @@ class PointTypeBinder constructor(
         private val binding: ListItemGenericBinding = ListItemGenericBinding.bind(root)
 
         init {
-            binding.icon.visibility = View.GONE
+            binding.icon.hide()
         }
 
         override fun bindView(item: PointTypeBinder, payloads: List<Any>) {

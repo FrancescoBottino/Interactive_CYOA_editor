@@ -11,10 +11,10 @@ import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 
 class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
-    private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: PointTypeFormFragmentBinding
 
@@ -24,7 +24,7 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         with(getKey<PointTypeFormKey>()) {
-            pointType = adventureFormModel.idManager.idMap[pointTypeId] as PointType
+            pointType = idManagerModel.idManager.idMap[pointTypeId] as PointType
         }
 
         binding = PointTypeFormFragmentBinding.bind(view)

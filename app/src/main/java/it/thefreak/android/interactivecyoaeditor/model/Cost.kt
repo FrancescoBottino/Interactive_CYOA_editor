@@ -9,7 +9,9 @@ data class Cost(
         override var ordinal: Int? = null,
         override var icon: String? = null,
         var pointTypeId: String? = null,
-        @Transient var pointType: PointType? = null,
+        @Transient
+        @property:ItemLinkField
+        var pointType: PointType? = null,
         var amount: Int? = null,
         var hide: Boolean? = null,
         var modifiers: ArrayList<CostModifier>? = null,

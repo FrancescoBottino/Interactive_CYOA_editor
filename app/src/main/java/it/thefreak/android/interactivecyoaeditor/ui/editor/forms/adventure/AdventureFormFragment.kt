@@ -9,13 +9,15 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
+import it.thefreak.android.interactivecyoaeditor.saveAction
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
 
 class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
-    private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
+    private val advRepoModel by lazy { lookup<AdventureFormModel_advRepo>() }
+    private val idMaganerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: AdventureFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager
@@ -26,7 +28,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adventure = adventureFormModel.getAdventure(requireContext())
+        adventure = advRepoModel.getAdventure(idMaganerModel.idManager)
 
         binding = AdventureFormFragmentBinding.bind(view)
         with(binding) {
@@ -51,11 +53,8 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
             descriptionField.onTextChanged {
                 adventure.description = it
             }
-            versionNameField.onTextChanged {
-                adventure.versionName = it
-            }
-            versionCodeField.onTextChanged {
-                adventure.versionCode = it.toIntOrNull()
+            versionField.onTextChanged {
+                adventure.version = it
             }
             authorField.onTextChanged {
                 adventure.author = it
@@ -65,7 +64,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 pointsListManager = PointsListManager(
                     context,
                     list,
-                    adventureFormModel.idManager,
+                        idMaganerModel.idManager,
                     adventure::initialPoints,
                 ) { item ->
                     backstack.goTo(PointTypeFormKey(item.id!!))
@@ -76,7 +75,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 adventureNodesListManager = AdventureNodesListManager(
                     context,
                     list,
-                    adventureFormModel.idManager,
+                        idMaganerModel.idManager,
                     adventure::adventureNodesList,
                 ) {item ->
                     backstack.goTo(AdventureNodeFormKey(item.id!!))
@@ -85,7 +84,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
             adventureNodesListManager = AdventureNodesListManager(
                 context,
                 adventureNodesList,
-                adventureFormModel.idManager,
+                    idMaganerModel.idManager,
                 adventure::adventureNodesList,
             ) {item ->
                 backstack.goTo(AdventureNodeFormKey(item.id!!))
@@ -98,10 +97,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
         with(binding) {
             nameField.setText(adventure.name)
             descriptionField.setText(adventure.description)
-            versionNameField.setText(adventure.versionName)
-            adventure.versionCode?.let {
-                versionCodeField.setText(it.toString())
-            }
+            versionField.setText(adventure.version)
             authorField.setText(adventure.author)
 
             adventure.initialPoints?.let { list ->

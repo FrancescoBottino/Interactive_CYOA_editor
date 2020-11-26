@@ -15,12 +15,12 @@ import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.choice.ChoiceFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
 
 class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_fragment) {
-    private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: AdventureNodeFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager
@@ -32,7 +32,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
         super.onViewCreated(view, savedInstanceState)
 
         with(getKey<AdventureNodeFormKey>()) {
-            adventureNode = adventureFormModel.idManager.idMap[adventureNodeId] as AdventureNode
+            adventureNode = idManagerModel.idManager.idMap[adventureNodeId] as AdventureNode
         }
 
         binding = AdventureNodeFormFragmentBinding.bind(view)
@@ -59,7 +59,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 pointsListManager = PointsListManager(
                     context,
                     list,
-                    adventureFormModel.idManager,
+                    idManagerModel.idManager,
                     adventureNode::nodeSpecificPoints,
                 ) { item ->
                     backstack.goTo(PointTypeFormKey(item.id!!))
@@ -96,7 +96,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 choicesListManager = ChoicesListManager(
                     context,
                     list,
-                    adventureFormModel.idManager,
+                    idManagerModel.idManager,
                     adventureNode::choicesList
                 ) { item ->
                     backstack.goTo(ChoiceFormKey(item.id!!))

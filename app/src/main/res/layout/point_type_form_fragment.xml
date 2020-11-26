@@ -120,7 +120,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/can_go_under_zero_switch_field" />
 
-            <it.thefreak.android.interactivecyoaeditor.views.ItemsListEditor
+            <it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorView
                 android:id="@+id/requirements_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

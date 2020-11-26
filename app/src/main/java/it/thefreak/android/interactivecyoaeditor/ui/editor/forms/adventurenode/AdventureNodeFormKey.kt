@@ -1,6 +1,6 @@
 package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode
 
-import it.thefreak.android.interactivecyoaeditor.ui.editor.FragmentKey
+import it.thefreak.android.interactivecyoaeditor.FragmentKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

@@ -25,7 +25,11 @@ class MainActivity : BasicActivity(), SimpleStateChanger.NavigationHandler {
         Navigator.configure()
                 .setStateChanger(SimpleStateChanger(this))
                 .setScopedServices(DefaultServiceProvider())
-                .install(this, binding.container, History.of(AdventureFormKey()))
+                //.install(this, binding.container, History.of(HomeKey()))
+                /**
+                 * todo use home
+                 */
+                .install(this, binding.container, History.of(AdventureFormKey(getFileUri(this))))
     }
 
     override fun onBackPressed() {

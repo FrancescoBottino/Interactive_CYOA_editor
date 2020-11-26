@@ -1,9 +1,11 @@
 package it.thefreak.android.interactivecyoaeditor
 
 import android.content.Context
+import it.thefreak.android.interactivecyoaeditor.FileSelector.getFile
+import it.thefreak.android.interactivecyoaeditor.FileSelector.getTopFile
+import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.loadFromJsonFile
+import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.saveToJsonFile
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
 
 object Cacher {
     const val folderName = "json_cache"
@@ -27,29 +29,18 @@ object Cacher {
         return "$key.json"
     }
 
+    fun getBeanFile(ctx: Context, key: String): File {
+        return getFile(getTopFile(ctx, folderName).apply {mkdir()}, getFileName(key))
+    }
+
     inline fun <reified T> savePersistent(ctx: Context, key: String, bean: T) {
-        val serializedBean = bean.toJson()
-        File(ctx.filesDir, folderName).apply {
-            mkdir()
-            File(this, getFileName(key)).apply {
-                FileOutputStream(this).use { outputStream ->
-                    outputStream.write(serializedBean.toByteArray())
-                }
-            }
+        getBeanFile(ctx, key).let { jsonFile ->
+            saveToJsonFile(jsonFile, bean)
         }
     }
     inline fun <reified T> loadPersistent(ctx: Context, key: String): T? {
-        File(ctx.filesDir, folderName).let { folder ->
-            if( !folder.exists() ) return null
-            File(folder, getFileName(key)).let { file ->
-                if( !file.exists() ) return null
-
-                val bytes = ByteArray(file.length().toInt())
-                FileInputStream(file).use { inputStream ->
-                    inputStream.read(bytes)
-                }
-                return String(bytes).fromJson<T>()
-            }
+        getBeanFile(ctx, key).let { jsonFile ->
+            return loadFromJsonFile(jsonFile)
         }
     }
 }

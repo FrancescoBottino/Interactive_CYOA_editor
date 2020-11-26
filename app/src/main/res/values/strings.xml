@@ -7,7 +7,7 @@
     <string name="generic_list_item_subtext">subtext</string>
     <string name="name_field_hint">Name</string>
     <string name="description_field_hint">Description</string>
-    <string name="version_name_field_hint">Version name</string>
+    <string name="version_field_hint">Version</string>
     <string name="version_code_field_hint">Version code</string>
     <string name="author_field_hint">Author</string>
     <string name="points_list_view_title">Points</string>
@@ -44,4 +44,5 @@
     <string name="cost_modifiers_list_title_lable">Modifiers</string>
     <string name="point_type_field_label">Points type</string>
     <string name="cost_amount_field_hint">Cost amount</string>
+    <string name="adventures_list_title_label">Adventures</string>
 </resources>

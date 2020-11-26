@@ -11,12 +11,12 @@ import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostsListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.cost.CostFormKey
 
 class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
-    private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: ChoiceFormFragmentBinding
     private lateinit var costsListManager: CostsListManager
@@ -28,7 +28,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         with(getKey<ChoiceFormKey>()) {
-            choice = adventureFormModel.idManager.idMap[choiceId] as Choice
+            choice = idManagerModel.idManager.idMap[choiceId] as Choice
         }
 
         binding = ChoiceFormFragmentBinding.bind(view)
@@ -53,7 +53,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                 costsListManager = CostsListManager(
                         context,
                         list,
-                        adventureFormModel.idManager,
+                        idManagerModel.idManager,
                         choice::costs
                 ) {
                     backstack.goTo(CostFormKey(it.id!!))
@@ -63,7 +63,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                 adventureNodesListManager = AdventureNodesListManager(
                         context,
                         list,
-                        adventureFormModel.idManager,
+                        idManagerModel.idManager,
                         choice::subNodes
                 ) {
                     backstack.goTo(AdventureNodeFormKey(it.id!!))

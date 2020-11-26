@@ -4,18 +4,19 @@ import android.content.Context
 import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.AdventureNodeBinder
-import it.thefreak.android.interactivecyoaeditor.views.ItemsListEditor
+import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericManager
+import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorView
 import kotlin.reflect.KMutableProperty0
 
 class AdventureNodesListManager (
         ctx: Context?,
-        itemsListEditor: ItemsListEditor,
+        itemsListEditorView: ItemsListEditorView,
         idManager: IdManager,
         container: KMutableProperty0<ArrayList<AdventureNode>?>,
         clickListener: (AdventureNode) -> Unit,
-): GenericItemsListManager<AdventureNode, AdventureNodeBinder>(
+): ItemsListEditorGenericManager<AdventureNode, AdventureNodeBinder>(
         ctx,
-        itemsListEditor,
+        itemsListEditorView,
         ::AdventureNodeBinder,
         ItemsListEditorListenerFactory(
                 AdventureNode::class,

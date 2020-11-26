@@ -6,11 +6,13 @@ import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
 import it.thefreak.android.interactivecyoaeditor.model.Cost
+import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
+import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class CostBinder constructor(
         cost: Cost,
-        listener: ListItemListener<CostBinder>? = null
-) : ListItemEditorBinder<Cost, CostBinder>(cost, listener), IDraggable {
+        listener: ItemsListEditorBinderListener<CostBinder>? = null
+) : ItemsListEditorGenericBinder<Cost, CostBinder>(cost, listener), IDraggable {
 
     class ViewHolder(
         private val root: View
@@ -18,7 +20,7 @@ class CostBinder constructor(
         private val binding: ListItemGenericBinding = ListItemGenericBinding.bind(root)
 
         init {
-            binding.icon.visibility = View.GONE
+            binding.icon.hide()
         }
 
         override fun bindView(item: CostBinder, payloads: List<Any>) {

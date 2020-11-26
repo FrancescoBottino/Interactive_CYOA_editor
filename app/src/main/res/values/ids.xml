@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="adventure_list_item" type="id" />
     <item name="point_state_list_item" type="id" />
     <item name="adventure_node_list_item" type="id" />
     <item name="choice_list_item" type="id" />

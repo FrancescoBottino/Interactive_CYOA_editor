@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.ui.editor.components
+package it.thefreak.android.interactivecyoaeditor.views.itemslisteditor
 
 import android.content.Context
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -14,26 +14,23 @@ import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.ListableItem
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.show
-import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.ListItemEditorBinder
-import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.ListItemListener
-import it.thefreak.android.interactivecyoaeditor.views.ItemsListEditor
 
 
-abstract class GenericItemsListManager<T : ListableItem, B : ListItemEditorBinder<T, B>>(
+abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEditorGenericBinder<T, B>>(
         ctx: Context?,
-        itemsListEditor: ItemsListEditor,
-        val binderFactory: (T, ListItemListener<B>) -> B,
-        val itemsListActionsListener: ItemsListEditorListener<T>
+        itemsListEditorView: ItemsListEditorView,
+        val binderFactory: (T, ItemsListEditorBinderListener<B>) -> B,
+        val itemsListActionsListener: ItemsListEditorItemListener<T>
 ) {
     private var collapsed: Boolean = false
 
     private val itemsListAdapter: FastItemAdapter<B> = FastItemAdapter()
-    private val recyclerView = itemsListEditor.binding.recyclerView
-    private val collapsedViewMore = itemsListEditor.binding.collapsedViewMore
-    private val emptyListPlaceholder = itemsListEditor.binding.emptyListPlaceholder
+    private val recyclerView = itemsListEditorView.binding.recyclerView
+    private val collapsedViewMore = itemsListEditorView.binding.collapsedViewMore
+    private val emptyListPlaceholder = itemsListEditorView.binding.emptyListPlaceholder
 
-    private val addButton = itemsListEditor.binding.addButton
-    private val collapseButton = itemsListEditor.binding.collapseButton
+    private val addButton = itemsListEditorView.binding.addButton
+    private val collapseButton = itemsListEditorView.binding.collapseButton
 
     private val itemsListTouchHelper by lazy {
         ItemTouchHelper(
@@ -57,7 +54,7 @@ abstract class GenericItemsListManager<T : ListableItem, B : ListItemEditorBinde
         )
     }
 
-    private val binderActionsListener = object : ListItemListener<B> {
+    private val binderActionsListener = object : ItemsListEditorBinderListener<B> {
         override fun onItemDelete(item: B) {
             if ( itemsListActionsListener.onItemDelete(item.content) ) {
                 itemsListAdapter.apply {

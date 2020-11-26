@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.views
+package it.thefreak.android.interactivecyoaeditor.views.itemslisteditor
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ItemsListEditorBinding
 
-class ItemsListEditor @JvmOverloads constructor(
+class ItemsListEditorView @JvmOverloads constructor(
         ctx: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ): ConstraintLayout(ctx, attrs, defStyleAttr) {
 

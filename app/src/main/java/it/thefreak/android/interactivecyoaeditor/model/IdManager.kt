@@ -31,9 +31,9 @@ class IdManager {
         }
     }
 
-    fun addWithCurrentId(obj: IdentifiableItem) {
+    fun addWithCurrentId(obj: IdentifiableItem, checkForUsed: Boolean = true) {
         if(obj.id.isNullOrBlank() || obj.id?.length != 6) throw Exception()
-        if(idMap.containsKey(obj.id)) throw Exception()
+        if(checkForUsed && idMap.containsKey(obj.id)) throw Exception()
 
         idMap[obj.id!!] = obj
     }

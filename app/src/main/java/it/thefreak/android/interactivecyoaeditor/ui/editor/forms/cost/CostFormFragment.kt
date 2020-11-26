@@ -10,14 +10,14 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.CostFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.getAdapterWrapper
+import it.thefreak.android.interactivecyoaeditor.ifBothNotNull
 import it.thefreak.android.interactivecyoaeditor.model.Cost
 import it.thefreak.android.interactivecyoaeditor.model.PointType
-import it.thefreak.android.interactivecyoaeditor.model.getLinkedField
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 
 class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
-    private val adventureFormModel by lazy { lookup<AdventureFormModel>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: CostFormFragmentBinding
 
@@ -28,7 +28,7 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         with(getKey<CostFormKey>()) {
-            cost = adventureFormModel.idManager.idMap[costId] as Cost
+            cost = idManagerModel.idManager.idMap[costId] as Cost
         }
 
         binding = CostFormFragmentBinding.bind(view)
@@ -38,7 +38,7 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
             }
 
             pointTypeSpinnerField.let { spinner ->
-                pointTypes = adventureFormModel.idManager.findByType()
+                pointTypes = idManagerModel.idManager.findByType()
 
                 ArrayAdapter(
                         requireContext(),
@@ -81,11 +81,7 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
         super.onResume()
         with(binding) {
 
-            cost::pointType
-                    .getLinkedField(
-                            adventureFormModel.idManager,
-                            cost::pointTypeId
-                    )?.let { pt ->
+            ifBothNotNull(cost.pointType, cost.pointTypeId) { pt, id ->
                 pointTypeSpinnerField.selection = pointTypes.indexOf(
                         pointTypes.first { it.id == pt.id }
                 )

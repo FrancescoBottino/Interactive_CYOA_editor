@@ -6,6 +6,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import androidx.recyclerview.widget.RecyclerView
+import com.mikepenz.fastadapter.items.AbstractItem
+import com.zhuinden.simplestackextensions.fragments.DefaultFragmentKey
 
 fun View.onClick(clickListener: ((View) -> Unit)?) {
     setOnClickListener(clickListener)
@@ -62,4 +65,12 @@ inline fun <T : View> T.hideIf(condition: (T) -> Boolean): T {
     }
 
     return this
+}
+
+abstract class GenericBinder<T> constructor(
+        val content: T
+) : AbstractItem<RecyclerView.ViewHolder>()
+
+abstract class FragmentKey: DefaultFragmentKey() {
+    //TOdo either define generic fragment key properties or remove class
 }

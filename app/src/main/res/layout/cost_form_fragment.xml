@@ -63,7 +63,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/item_is_hidden_label" />
 
-            <it.thefreak.android.interactivecyoaeditor.views.ItemsListEditor
+            <it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorView
                 android:id="@+id/cost_modifiers_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

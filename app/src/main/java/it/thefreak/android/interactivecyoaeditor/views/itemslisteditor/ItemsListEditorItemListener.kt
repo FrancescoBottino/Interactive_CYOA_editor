@@ -1,6 +1,6 @@
-package it.thefreak.android.interactivecyoaeditor.ui.editor.components
+package it.thefreak.android.interactivecyoaeditor.views.itemslisteditor
 
-interface ItemsListEditorListener<T> {
+interface ItemsListEditorItemListener<T> {
     fun onItemDelete(item: T): Boolean
     fun onItemClick(item: T)
     fun onItemCopy(item: T): T?
