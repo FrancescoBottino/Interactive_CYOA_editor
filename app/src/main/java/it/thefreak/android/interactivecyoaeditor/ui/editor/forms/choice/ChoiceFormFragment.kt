@@ -7,8 +7,10 @@ import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ChoiceFormFragmentBinding
+import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
+import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
@@ -43,8 +45,36 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             descriptionField.onTextChanged {
                 choice.description = it
             }
+            activatableSwitchField.setOnCheckedChangeListener { _, checked ->
+                choice.activatable = checked
+
+                if(checked) {
+                    automaticallyActivatedSwitchField.hide()
+                    conditionsList.hide()
+                } else {
+                    choice.automaticallyActivated?.let { auto ->
+                        if(auto) {
+                            conditionsList.show()
+                        } else {
+                            conditionsList.hide()
+                        }
+                    }
+                    automaticallyActivatedSwitchField.show()
+                }
+            }
             automaticallyActivatedSwitchField.setOnCheckedChangeListener { _, checked ->
                 choice.automaticallyActivated = checked
+
+                choice.activatable?.let { activatable ->
+                    if(!activatable && checked) {
+                        conditionsList.show()
+                    } else {
+                        conditionsList.hide()
+                    }
+                }
+            }
+            conditionsList.let { list ->
+                //todo requirements / conditions
             }
             buyLimitField.onTextChanged {
                 choice.buyLimit = it.toIntOrNull()
@@ -82,10 +112,33 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
         super.onResume()
         with(binding) {
             nameField.setText(choice.name)
+
             descriptionField.setText(choice.description)
-            (choice.automaticallyActivated?:false).let {
-                automaticallyActivatedSwitchField.isChecked = it
+
+            (choice.activatable?:true).let { activatable ->
+                activatableSwitchField.isChecked = activatable
+
+                (choice.automaticallyActivated?:false).let { auto ->
+                    automaticallyActivatedSwitchField.isChecked = auto
+
+                    if(activatable) {
+                        automaticallyActivatedSwitchField.hide()
+                        conditionsList.hide()
+                    } else {
+                        if(auto) {
+                            conditionsList.show()
+                        } else {
+                            conditionsList.hide()
+                        }
+                        automaticallyActivatedSwitchField.show()
+                    }
+                }
             }
+
+            choice.conditions?.let { list ->
+                //TODO
+            }
+
             choice.buyLimit?.let {
                 buyLimitField.setText(it.toString())
             }

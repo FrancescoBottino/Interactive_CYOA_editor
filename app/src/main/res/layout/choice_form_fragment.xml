@@ -66,11 +66,26 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/activatable_switch_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="@string/activatable_field_label" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/automatically_activated_switch_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/automatically_activated_field_label" />
+
+            <it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorView
+                android:id="@+id/conditions_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:title_text="@string/conditions_list_title_label" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/buy_limit_field_layout"

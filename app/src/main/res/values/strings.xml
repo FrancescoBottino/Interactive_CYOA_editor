@@ -45,4 +45,6 @@
     <string name="point_type_field_label">Points type</string>
     <string name="cost_amount_field_hint">Cost amount</string>
     <string name="adventures_list_title_label">Adventures</string>
+    <string name="activatable_field_label">Activable?</string>
+    <string name="conditions_list_title_label">Conditions</string>
 </resources>
