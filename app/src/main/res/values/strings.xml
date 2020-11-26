@@ -47,4 +47,7 @@
     <string name="adventures_list_title_label">Adventures</string>
     <string name="activatable_field_label">Activable?</string>
     <string name="conditions_list_title_label">Conditions</string>
+    <string name="cost_form_fragment_title">Cost editor</string>
+    <string name="cost_modifier_form_fragment_title">Cost modifier editor</string>
+    <string name="cost_mod_amount_field">Cost modifier amount</string>
 </resources>

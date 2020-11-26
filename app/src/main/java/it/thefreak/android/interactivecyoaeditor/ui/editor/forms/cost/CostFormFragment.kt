@@ -16,6 +16,7 @@ import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostModifiersListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifier.CostModifierFormKey
 
 class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
@@ -81,8 +82,7 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
                         idManagerModel.idManager,
                         cost::modifiers,
                 ) { item ->
-                    //TODO
-                    //backstack.goTo(CostModifierFormKey(item.id!!))
+                    backstack.goTo(CostModifierFormKey(item.id!!))
                 }
             }
         }
