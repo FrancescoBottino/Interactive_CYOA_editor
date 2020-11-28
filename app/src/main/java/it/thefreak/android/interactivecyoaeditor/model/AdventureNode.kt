@@ -18,8 +18,4 @@ data class AdventureNode(
         var choiceLimit: Int? = null,
         var choiceGroupType: ChoicesGroupType? = null,
         var choicesList: ArrayList<Choice>? = null,
-): IdentifiableItem, ListableItem, NarrativeItem, RequirementHolderItem, StylableItem {
-    enum class ChoicesGroupType {
-        OPTIONAL, REQUIRED
-    }
-}
+): IdentifiableItem, ListableItem, NarrativeItem, RequirementHolderItem, StylableItem

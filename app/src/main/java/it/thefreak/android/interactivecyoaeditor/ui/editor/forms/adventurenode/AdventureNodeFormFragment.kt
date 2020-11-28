@@ -11,6 +11,7 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureNodeFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
+import it.thefreak.android.interactivecyoaeditor.model.ChoicesGroupType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
@@ -81,8 +82,8 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                     override fun onItemSelected(parent: MaterialSpinner, view: View?, position: Int, id: Long) {
                         //0 optional, 1 required
                         when(position) {
-                            0 -> adventureNode.choiceGroupType = AdventureNode.ChoicesGroupType.OPTIONAL
-                            1 -> adventureNode.choiceGroupType = AdventureNode.ChoicesGroupType.REQUIRED
+                            0 -> adventureNode.choiceGroupType = ChoicesGroupType.OPTIONAL
+                            1 -> adventureNode.choiceGroupType = ChoicesGroupType.REQUIRED
                             else -> throw Exception()
                         }
                     }
@@ -135,8 +136,8 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
             }
             adventureNode.choiceGroupType?.let { type ->
                 when(type) {
-                    AdventureNode.ChoicesGroupType.OPTIONAL -> choiceTypeSpinnerField.selection = 0
-                    AdventureNode.ChoicesGroupType.REQUIRED -> choiceTypeSpinnerField.selection = 1
+                    ChoicesGroupType.OPTIONAL -> choiceTypeSpinnerField.selection = 0
+                    ChoicesGroupType.REQUIRED -> choiceTypeSpinnerField.selection = 1
                 }
             }
             adventureNode.choicesList?.let { list ->

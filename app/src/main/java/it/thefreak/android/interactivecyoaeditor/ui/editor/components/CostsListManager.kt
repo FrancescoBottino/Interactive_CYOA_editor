@@ -17,7 +17,9 @@ class CostsListManager (
 ): ItemsListEditorGenericManager<Cost, CostBinder>(
         ctx,
         itemsListEditorView,
-        ::CostBinder,
+        { cost, listener ->
+                CostBinder(cost, listener, idManager)
+        },
         ItemsListEditorListenerFactory(
                 Cost::class,
                 ::Cost,

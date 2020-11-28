@@ -1,23 +1,12 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-import kotlinx.serialization.Serializable
 
-@Serializable
-open class Requirement: Item {
-    //var root: Requirement? = null
+interface Requirement: IdentifiableItem, ListableItem {
+    val type: RequirementType
 }
 
 /*
 open class Requirement: IdentifiableItem() {
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        TODO("Not yet implemented")
-    }
-    override fun deepDeleteContainers(idManager: IdManager) {
-        TODO("Not yet implemented")
-    }
-    override fun newInstance(): IdentifiableItem {
-        TODO("Not yet implemented")
-    }
 }
 
 open class ChoiceRequirement (
@@ -26,12 +15,6 @@ open class ChoiceRequirement (
 ) : Requirement() {
     enum class ChoiceRequirementType {
         MUST_HAVE, MUST_NOT_HAVE
-    }
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        TODO("Not yet implemented")
-    }
-    override fun newInstance(): IdentifiableItem {
-        TODO("Not yet implemented")
     }
 }
 
@@ -43,12 +26,6 @@ open class PointsRequirement(
     enum class PointsRequirementType {
         EQUAL, LESS_THAN, LESS_OR_EQUAL_THAN, MORE_THAN, MORE_OR_EQUAL_THAN
     }
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        TODO("Not yet implemented")
-    }
-    override fun newInstance(): IdentifiableItem {
-        TODO("Not yet implemented")
-    }
 }
 
 open class RequirementLogicNode(
@@ -58,22 +35,10 @@ open class RequirementLogicNode(
     enum class RequirementLogicNodeType {
         AND, OR, NOT
     }
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        TODO("Not yet implemented")
-    }
-    override fun newInstance(): IdentifiableItem {
-        TODO("Not yet implemented")
-    }
 }
 
 open class RequirementLogicNodeNot(
         var child: Requirement
 ) : RequirementLogicNode(RequirementLogicNodeType.NOT, arrayListOf(child)) {
-    override fun deepCopy(other: Any, idManager: IdManager) {
-        TODO("Not yet implemented")
-    }
-    override fun newInstance(): IdentifiableItem {
-        TODO("Not yet implemented")
-    }
 }
 */

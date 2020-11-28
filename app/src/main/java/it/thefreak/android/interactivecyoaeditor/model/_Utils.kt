@@ -2,10 +2,7 @@ package it.thefreak.android.interactivecyoaeditor.model
 
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty0
-import kotlin.reflect.KMutableProperty1
-import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.jvmErasure
@@ -56,15 +53,11 @@ fun <T:Item> T.deepCopyItem(type: KClass<T>, idManager: IdManager): T {
                         }
                     }
                     fieldType.isSubclassOf(Item::class) -> {
-                        if( field.findAnnotation<ItemLinkField>() == null ) {
-                            fun <I: Item> cast_andDeepCopy(value: Any, type: KClass<I>): I {
-                                return (value as I).deepCopyItem(type, idManager)
-                            }
-
-                            parameter to cast_andDeepCopy(fieldValue, fieldType as KClass<out Item>)
-                        } else {
-                            parameter to fieldValue
+                        fun <I: Item> cast_andDeepCopy(value: Any, type: KClass<I>): I {
+                            return (value as I).deepCopyItem(type, idManager)
                         }
+
+                        parameter to cast_andDeepCopy(fieldValue, fieldType as KClass<out Item>)
                     }
                     else -> when(fieldValue) {
                         is String -> parameter to String(fieldValue.toCharArray())
@@ -126,53 +119,6 @@ fun <T:Item> T.deepRegisterItem(type: KClass<T>, idManager: IdManager) {
     }
 }
 
-inline fun <reified T:Item> T.deepLinkItem(idManager: IdManager) = this.deepLinkItem(T::class, idManager)
-fun <T:Item> T.deepLinkItem(type: KClass<T>, idManager: IdManager) {
-
-    fun <L: Item> ArrayList<*>.deepLinkItemList(type: KClass<L>, idManager: IdManager) {
-        this.forEach {
-            (it as L).deepLinkItem(type, idManager)
-        }
-    }
-
-    fun <K: IdentifiableItem> setLink(field: KProperty1<T, *>, idManager: IdManager, id: String, type: KClass<K>) {
-        val item = (idManager.idMap[id] as K?)
-                ?: throw Exception("Can't find id ${id}")
-        (field as KMutableProperty1<T, K?>).set(this, item)
-    }
-
-    type.declaredMemberProperties
-        .filter { field -> field.findAnnotation<ItemLinkField>() != null }
-        .forEach { field ->
-            //IS TO BE LINKED
-            val idFieldName = field.name+"Id"
-            val idField = type.declaredMemberProperties
-                    .firstOrNull { idField ->
-                        idField.name == idFieldName
-                    }
-                    ?: throw Exception("No id field to link from field ${field.name}")
-            (idField.get(this) as String?)?.let { id ->
-                setLink(field, idManager, id, field.returnType.jvmErasure as KClass<out IdentifiableItem>)
-            }
-        }
-    type.declaredMemberProperties
-        .filter { field ->
-            field.returnType.jvmErasure.isSubclassOf(ArrayList::class)
-        }
-        .forEach { field ->
-            //HAS CHILD OBJECTS TO LINK
-            val value = field.get(this)
-            if(value != null) {
-                val listItemType = field.returnType.arguments[0].type!!.jvmErasure
-                if(listItemType.isSubclassOf(Item::class)) {
-                    (value as ArrayList<*>).deepLinkItemList(listItemType as KClass<out Item>, idManager)
-                } else {
-                    throw Exception("Unknown parameter type ArrayList<${listItemType}>")
-                }
-            }
-        }
-}
-
 inline fun <reified T:Item> T.deepDeleteItem(idManager: IdManager, container: ArrayList<T>?) = this.deepDeleteItem(T::class, idManager, container)
 fun <T: Item> T.deepDeleteItem(type: KClass<T>, idManager: IdManager, container: ArrayList<T>?) {
 
@@ -191,13 +137,11 @@ fun <T: Item> T.deepDeleteItem(type: KClass<T>, idManager: IdManager, container:
         val fieldType = field.returnType.jvmErasure
         if(fieldValue != null) {
             if(fieldType.isSubclassOf(Item::class)) {
-                if( field.findAnnotation<ItemLinkField>() == null ) {
-                    fun <I: Item> cast(value: Any, type: KClass<I>): I {
-                        return value as I
-                    }
-
-                    cast(fieldValue, fieldType as KClass<out Item>).deepDeleteItem(idManager, null)
+                fun <I: Item> cast(value: Any, type: KClass<I>): I {
+                    return value as I
                 }
+
+                cast(fieldValue, fieldType as KClass<out Item>).deepDeleteItem(idManager, null)
             } else if(field.returnType.jvmErasure.isSubclassOf(ArrayList::class)) {
                 val listItemType = field.returnType.arguments[0].type!!.jvmErasure
                 if(listItemType.isSubclassOf(Item::class)) {
@@ -220,21 +164,5 @@ fun <T> KMutableProperty0<ArrayList<T>?>.init(): ArrayList<T> {
         }
         arr
     }
-}
-
-@Suppress("UNCHECKED_CAST")
-fun <T: IdentifiableItem> KMutableProperty0<T?>.getLinkedField(idManager: IdManager, itemIdField: KMutableProperty0<String?>): T? {
-
-    val annotations = this.annotations
-
-    if (this.findAnnotation<ItemLinkField>() == null) {
-        error("Assertion failed, tried to get linked item of non linkable field ${this.name}")
-    }
-    return this.get()
-            ?: itemIdField.get()?.let { id ->
-                idManager.idMap[id] as T?
-            }?.also { item ->
-                this.set(item)
-            }
 }
 

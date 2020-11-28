@@ -1,4 +1,5 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-interface Item
-
+enum class ChoicesGroupType {
+    OPTIONAL, REQUIRED
+}

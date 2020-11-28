@@ -1,14 +1,12 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class Cost(
+data class PointAmountRequirement(
         override var id: String? = null,
         override var ordinal: Int? = null,
         override var icon: String? = null,
         var pointTypeId: String? = null,
+        var comparisonFunction: ComparisonFunction? = null,
         var amount: Int? = null,
-        var hide: Boolean? = null,
-        var modifiers: ArrayList<CostModifier>? = null,
-): IdentifiableItem, ListableItem
+): Requirement {
+    override val type: RequirementType = RequirementType.POINT_AMOUNT
+}

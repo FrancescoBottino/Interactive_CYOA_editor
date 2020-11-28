@@ -10,7 +10,6 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.CostFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.getAdapterWrapper
-import it.thefreak.android.interactivecyoaeditor.ifBothNotNull
 import it.thefreak.android.interactivecyoaeditor.model.Cost
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
@@ -55,13 +54,11 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
                 spinner.onItemSelectedListener = object : MaterialSpinner.OnItemSelectedListener {
                     override fun onItemSelected(parent: MaterialSpinner, view: View?, position: Int, id: Long) {
                         pointTypes[position].let { pt ->
-                            cost.pointType = pt
                             cost.pointTypeId = pt.id
                         }
                     }
 
                     override fun onNothingSelected(parent: MaterialSpinner) {
-                        cost.pointType = null
                         cost.pointTypeId = null
                     }
                 }
@@ -92,9 +89,9 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
         super.onResume()
         with(binding) {
 
-            ifBothNotNull(cost.pointType, cost.pointTypeId) { pt, id ->
+            cost.pointTypeId?.let { id ->
                 pointTypeSpinnerField.selection = pointTypes.indexOf(
-                        pointTypes.first { it.id == pt.id }
+                        pointTypes.first { it.id == id }
                 )
             }
 
