@@ -13,6 +13,7 @@ import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.cost.CostFormKey
@@ -23,6 +24,8 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
     private lateinit var binding: ChoiceFormFragmentBinding
     private lateinit var costsListManager: CostsListManager
     private lateinit var adventureNodesListManager: AdventureNodesListManager
+    private lateinit var requirementsListManager: RequirementsListManager
+    private lateinit var conditionsListManager: RequirementsListManager
 
     private lateinit var choice: Choice
 
@@ -74,7 +77,14 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                 }
             }
             conditionsList.let { list ->
-                //todo requirements / conditions
+                conditionsListManager = RequirementsListManager(
+                        requireContext(),
+                        list,
+                        idManagerModel.idManager,
+                        choice::conditions
+                ) {
+                    //todo open requirement form
+                }
             }
             buyLimitField.onTextChanged {
                 choice.buyLimit = it.toIntOrNull()
@@ -103,7 +113,14 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                 choice.hide = checked
             }
             requirementsList.let { list ->
-                //todo
+                requirementsListManager = RequirementsListManager(
+                        requireContext(),
+                        list,
+                        idManagerModel.idManager,
+                        choice::requirements,
+                ) {
+                    //todo open requirement form
+                }
             }
         }
     }
@@ -136,7 +153,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             }
 
             choice.conditions?.let { list ->
-                //TODO
+                conditionsListManager.set(list)
             }
 
             choice.buyLimit?.let {
@@ -156,8 +173,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             }
 
             choice.requirements?.let { list ->
-                //requirementsListManager.set(list)
-                //todo
+                requirementsListManager.set(list)
             }
         }
     }

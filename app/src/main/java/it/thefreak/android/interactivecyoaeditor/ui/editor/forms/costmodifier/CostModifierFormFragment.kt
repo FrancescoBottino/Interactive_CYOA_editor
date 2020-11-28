@@ -9,12 +9,14 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.CostModifierFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.model.CostModifier
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 
 class CostModifierFormFragment: KeyedFragment(R.layout.cost_modifier_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: CostModifierFormFragmentBinding
+    private lateinit var requirementsListManager: RequirementsListManager
 
     private lateinit var costModifier: CostModifier
 
@@ -40,7 +42,14 @@ class CostModifierFormFragment: KeyedFragment(R.layout.cost_modifier_form_fragme
             }
 
             requirementsList.let { list ->
-                //TODO
+                requirementsListManager = RequirementsListManager(
+                        requireContext(),
+                        list,
+                        idManagerModel.idManager,
+                        costModifier::requirements,
+                ) {
+                    //todo open requirement form
+                }
             }
         }
     }
@@ -57,6 +66,7 @@ class CostModifierFormFragment: KeyedFragment(R.layout.cost_modifier_form_fragme
             }
 
             costModifier.requirements?.let { list ->
+                requirementsListManager.set(list)
             }
         }
     }

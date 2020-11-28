@@ -16,6 +16,7 @@ import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.choice.ChoiceFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
@@ -26,6 +27,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
     private lateinit var binding: AdventureNodeFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager
     private lateinit var choicesListManager: ChoicesListManager
+    private lateinit var requirementsListManager: RequirementsListManager
 
     private lateinit var adventureNode: AdventureNode
 
@@ -112,6 +114,16 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                     requirementsList.hide()
                 }
             }
+            requirementsList.let { list ->
+                requirementsListManager = RequirementsListManager(
+                        requireContext(),
+                        list,
+                        idManagerModel.idManager,
+                        adventureNode::requirements,
+                ) {
+                    //todo open requirement form
+                }
+            }
         }
     }
 
@@ -150,6 +162,9 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 } else {
                     requirementsList.hide()
                 }
+            }
+            adventureNode.requirements?.let { list ->
+                requirementsListManager.set(list)
             }
         }
     }

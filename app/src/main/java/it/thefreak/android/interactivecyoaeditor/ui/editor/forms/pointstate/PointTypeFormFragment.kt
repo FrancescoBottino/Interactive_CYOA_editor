@@ -11,12 +11,14 @@ import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 
 class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
 
     private lateinit var binding: PointTypeFormFragmentBinding
+    private lateinit var requirementsListManager: RequirementsListManager
 
     private lateinit var pointType: PointType
 
@@ -54,8 +56,16 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
                     requirementsList.hide()
                 }
             }
-
-            //TODO requirements list listeners
+            requirementsList.let { list ->
+                requirementsListManager = RequirementsListManager(
+                        requireContext(),
+                        list,
+                        idManagerModel.idManager,
+                        pointType::requirements,
+                ) {
+                    //todo open requirement form
+                }
+            }
         }
     }
 
@@ -77,6 +87,9 @@ class PointTypeFormFragment: KeyedFragment(R.layout.point_type_form_fragment) {
                 } else {
                     requirementsList.hide()
                 }
+            }
+            pointType.requirements?.let { list ->
+                requirementsListManager.set(list)
             }
         }
     }
