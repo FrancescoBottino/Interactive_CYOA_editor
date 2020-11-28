@@ -1,5 +1,8 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ChoiceSelectionRequirement(
         override var id: String? = null,
         override var ordinal: Int? = null,
