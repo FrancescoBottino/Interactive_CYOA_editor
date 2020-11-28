@@ -81,7 +81,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             }
             costsList.let { list ->
                 costsListManager = CostsListManager(
-                        context,
+                        requireContext(),
                         list,
                         idManagerModel.idManager,
                         choice::costs
@@ -91,7 +91,7 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
             }
             subNodesList.let { list ->
                 adventureNodesListManager = AdventureNodesListManager(
-                        context,
+                        requireContext(),
                         list,
                         idManagerModel.idManager,
                         choice::subNodes

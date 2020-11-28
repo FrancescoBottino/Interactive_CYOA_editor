@@ -116,6 +116,13 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
         updateVisibleContent()
     }
 
+    private fun addItem(newItem: T) {
+        newItem.ordinal = itemsListAdapter.itemCount + 1
+        itemsListAdapter.add(makeBinder(newItem))
+
+        updateVisibleContent()
+    }
+
     init {
         recyclerView.layoutManager = LinearLayoutManager(ctx)
         recyclerView.itemAnimator = AlphaInAnimator()
@@ -125,12 +132,7 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
         updateVisibleContent()
 
         addButton.onClick {
-            itemsListActionsListener.onNewItem()?.let { newItem ->
-                newItem.ordinal = itemsListAdapter.itemCount + 1
-                itemsListAdapter.add(makeBinder(newItem))
-
-                updateVisibleContent()
-            }
+            itemsListActionsListener.onNewItem(::addItem)
         }
 
         collapseButton.onClick {

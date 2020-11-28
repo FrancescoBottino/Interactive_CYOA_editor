@@ -9,7 +9,7 @@ import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsList
 import kotlin.reflect.KMutableProperty0
 
 class PointsListManager (
-        ctx: Context?,
+        ctx: Context,
         itemsListEditorView: ItemsListEditorView,
         idManager: IdManager,
         container: KMutableProperty0<ArrayList<PointType>?>,

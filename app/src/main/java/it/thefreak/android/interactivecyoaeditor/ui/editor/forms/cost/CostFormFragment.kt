@@ -74,7 +74,7 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
 
             costModifiersList.let { list ->
                 costModifiersListManager = CostModifiersListManager(
-                        context,
+                        requireContext(),
                         list,
                         idManagerModel.idManager,
                         cost::modifiers,

@@ -27,12 +27,13 @@ class ItemsListEditorListenerFactory<T: ListableItem>(
         }
     }
 
-    override fun onNewItem(): T? {
-        return factory()?.apply {
+    override fun onNewItem(adder: (T)->Unit) {
+        factory()?.apply {
             if(this is IdentifiableItem) {
                 assignNewId(idManager)
             }
             container.init().add(this)
+            adder(this)
         }
     }
 }

@@ -4,5 +4,5 @@ interface ItemsListEditorItemListener<T> {
     fun onItemDelete(item: T): Boolean
     fun onItemClick(item: T)
     fun onItemCopy(item: T): T?
-    fun onNewItem(): T?
+    fun onNewItem(adder: (T)->Unit)
 }

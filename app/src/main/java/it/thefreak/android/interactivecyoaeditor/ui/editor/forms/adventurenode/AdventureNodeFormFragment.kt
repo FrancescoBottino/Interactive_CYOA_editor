@@ -58,7 +58,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
             }
             pointsList.let { list ->
                 pointsListManager = PointsListManager(
-                    context,
+                    requireContext(),
                     list,
                     idManagerModel.idManager,
                     adventureNode::nodeSpecificPoints,
@@ -95,7 +95,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
             }
             choicesList.let { list ->
                 choicesListManager = ChoicesListManager(
-                    context,
+                    requireContext(),
                     list,
                     idManagerModel.idManager,
                     adventureNode::choicesList
