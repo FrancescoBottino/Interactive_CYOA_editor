@@ -7,7 +7,7 @@ import kotlin.reflect.KMutableProperty0
 
 class ItemsListEditorListenerFactory<T: ListableItem>(
         private val type: KClass<T>,
-        private val factory: ()->T,
+        private val factory: ()->T?,
         private val idManager: IdManager,
         private val container: KMutableProperty0<ArrayList<T>?>,
         private val clickListener: (T) -> Unit,
@@ -27,8 +27,8 @@ class ItemsListEditorListenerFactory<T: ListableItem>(
         }
     }
 
-    override fun onNewItem(): T {
-        return factory().apply {
+    override fun onNewItem(): T? {
+        return factory()?.apply {
             if(this is IdentifiableItem) {
                 assignNewId(idManager)
             }
