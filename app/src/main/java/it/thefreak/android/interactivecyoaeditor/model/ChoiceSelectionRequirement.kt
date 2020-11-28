@@ -1,6 +1,6 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
-data class ChoiceRequirement(
+data class ChoiceSelectionRequirement(
         override var id: String? = null,
         override var ordinal: Int? = null,
         override var icon: String? = null,

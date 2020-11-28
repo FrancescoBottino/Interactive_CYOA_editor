@@ -6,4 +6,5 @@
     <item name="choice_list_item" type="id" />
     <item name="cost_list_item" type="id" />
     <item name="cost_modifier_list_item" type="id" />
+    <item name="requirement_list_item" type="id" />
 </resources>

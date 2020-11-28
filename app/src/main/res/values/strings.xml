@@ -30,6 +30,9 @@
     <string name="adventure_node_form_fragment_title">Adventure node editor</string>
     <string name="choice_type_optional">Optional</string>
     <string name="choice_type_required">Required</string>
+    <string name="requirement_type_choice_selection">Choice Selection</string>
+    <string name="requirement_type_point_amount">Point Amount</string>
+    <string name="requirement_type_point_comparison">Point Comparison</string>
     <string name="choices_list_editor_title_label">Choices</string>
     <string name="choice_form_fragment_title">Choice editor</string>
     <string name="automatically_activated_field_label">Automatically activated?</string>
@@ -50,4 +53,7 @@
     <string name="cost_form_fragment_title">Cost editor</string>
     <string name="cost_modifier_form_fragment_title">Cost modifier editor</string>
     <string name="cost_mod_amount_field">Cost modifier amount</string>
+    <string name="point_amount_requirement_description">%1$s %2$s %3$s</string>
+    <string name="choice_requirement_description">%1$s (%2$s)</string>
+    <string name="undefined_requirement">Undefined</string>
 </resources>
