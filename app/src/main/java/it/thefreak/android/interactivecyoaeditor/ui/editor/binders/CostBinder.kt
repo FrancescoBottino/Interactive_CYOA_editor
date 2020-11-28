@@ -32,7 +32,9 @@ class CostBinder constructor(
                             item.content.amount,
                             item.content.pointTypeId?.let { id ->
                                 item.idManager.idMap[id]
-                            } as PointType,
+                            }?.let {
+                                it as PointType
+                            },
                             default = root.context.getString(R.string.undefined_cost)
                     ) { amount, pointType ->
                         root.context.getString(
