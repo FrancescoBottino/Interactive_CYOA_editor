@@ -11,4 +11,21 @@ data class ChoiceSelectionRequirement(
         var choicesIds: ArrayList<String>? = null,
 ) : Requirement {
     override val type: RequirementType = RequirementType.CHOICE_SELECTION
+    override fun deepCopy(idManager: IdManager): ChoiceSelectionRequirement {
+        return ChoiceSelectionRequirement(
+                icon = this.icon.copy(),
+                groupingFunction = this.groupingFunction,
+                choicesIds = this.choicesIds.copy()
+        ).apply {
+            assignNewId(idManager)
+        }
+    }
+
+    override fun deepRegister(idManager: IdManager) {
+        this.addWithCurrentId(idManager)
+    }
+
+    override fun deepDelete(idManager: IdManager) {
+        this.removeFromIdMap(idManager)
+    }
 }

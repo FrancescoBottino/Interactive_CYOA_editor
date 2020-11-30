@@ -22,17 +22,8 @@ class RequirementsListManager(
         ::RequirementBinder,
         object : ItemsListEditorItemListener<Requirement> {
             override fun onItemDelete(item: Requirement): Boolean {
-                when(item.type) {
-                    RequirementType.CHOICE_SELECTION -> {
-                        (item as ChoiceSelectionRequirement).deepDeleteItem(idManager, container.get() as ArrayList<ChoiceSelectionRequirement>?)
-                    }
-                    RequirementType.POINT_AMOUNT -> {
-                        (item as PointAmountRequirement).deepDeleteItem(idManager, container.get() as ArrayList<PointAmountRequirement>?)
-                    }
-                    RequirementType.POINT_COMPARISON -> {
-                        (item as PointComparisonRequirement).deepDeleteItem(idManager, container.get() as ArrayList<PointComparisonRequirement>?)
-                    }
-                }
+                item.deepDelete(idManager)
+                container.init().remove(item)
                 return true
             }
 
@@ -43,13 +34,13 @@ class RequirementsListManager(
             override fun onItemCopy(item: Requirement): Requirement {
                 return when(item.type) {
                     RequirementType.CHOICE_SELECTION -> {
-                        (item as ChoiceSelectionRequirement).deepCopyItem(idManager)
+                        (item as ChoiceSelectionRequirement).deepCopy(idManager)
                     }
                     RequirementType.POINT_AMOUNT -> {
-                        (item as PointAmountRequirement).deepCopyItem(idManager)
+                        (item as PointAmountRequirement).deepCopy(idManager)
                     }
                     RequirementType.POINT_COMPARISON -> {
-                        (item as PointComparisonRequirement).deepCopyItem(idManager)
+                        (item as PointComparisonRequirement).deepCopy(idManager)
                     }
                 }.apply {
                     container.init().add(this)

@@ -42,12 +42,12 @@ class HomeFragment: KeyedFragment(R.layout.home_fragment) {
                         TODO("Not yet implemented")
                     }
 
-                    override fun onNewItem(): AdventureMeta? {
+                    override fun onNewItem(adder: (AdventureMeta) -> Unit) {
                         val newAdv = Adventure().apply {
                             name = "test adv"
                             version = "1.0.0"
                         }
-                        return homeModel.repo.newAdventure(requireContext(), newAdv)
+                        adder(homeModel.repo.newAdventure(requireContext(), newAdv))
                     }
                 }
             )

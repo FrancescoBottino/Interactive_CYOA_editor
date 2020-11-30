@@ -12,4 +12,22 @@ data class PointComparisonRequirement(
         var pointTypeBId: String? = null,
 ): Requirement {
     override val type: RequirementType = RequirementType.POINT_COMPARISON
+    override fun deepCopy(idManager: IdManager): PointComparisonRequirement {
+        return PointComparisonRequirement(
+                icon = this.icon.copy(),
+                pointTypeAId = this.pointTypeAId.copy(),
+                comparisonFunction = this.comparisonFunction,
+                pointTypeBId = this.pointTypeBId.copy()
+        ).apply {
+            assignNewId(idManager)
+        }
+    }
+
+    override fun deepRegister(idManager: IdManager) {
+        this.addWithCurrentId(idManager)
+    }
+
+    override fun deepDelete(idManager: IdManager) {
+        this.removeFromIdMap(idManager)
+    }
 }

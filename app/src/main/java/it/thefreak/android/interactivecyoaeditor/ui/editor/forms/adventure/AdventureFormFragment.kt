@@ -64,7 +64,7 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 pointsListManager = PointsListManager(
                     requireContext(),
                     list,
-                        idMaganerModel.idManager,
+                    idMaganerModel.idManager,
                     adventure::initialPoints,
                 ) { item ->
                     backstack.goTo(PointTypeFormKey(item.id!!))
@@ -73,21 +73,13 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
 
             adventureNodesList.let { list ->
                 adventureNodesListManager = AdventureNodesListManager(
-                        requireContext(),
+                    requireContext(),
                     list,
-                        idMaganerModel.idManager,
+                    idMaganerModel.idManager,
                     adventure::adventureNodesList,
                 ) {item ->
                     backstack.goTo(AdventureNodeFormKey(item.id!!))
                 }
-            }
-            adventureNodesListManager = AdventureNodesListManager(
-                    requireContext(),
-                adventureNodesList,
-                    idMaganerModel.idManager,
-                adventure::adventureNodesList,
-            ) {item ->
-                backstack.goTo(AdventureNodeFormKey(item.id!!))
             }
         }
     }

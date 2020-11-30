@@ -6,7 +6,6 @@ import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.loadFromJsonFil
 import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.saveToJsonFile
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.model.deepRegisterItem
 
 class AdventureFormModel_advRepo(
         /*
@@ -21,7 +20,7 @@ class AdventureFormModel_advRepo(
         return if(adventure == null) {
             loadFromJsonFile<Adventure>(advUri.toFile())?.apply {
                 adventure = this
-                deepRegisterItem(idManager)
+                deepRegister(idManager)
             } ?: throw Exception("cant read file $advUri")
         } else {
             adventure!!
