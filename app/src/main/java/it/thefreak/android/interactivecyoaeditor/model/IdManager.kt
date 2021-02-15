@@ -53,7 +53,7 @@ class IdManager {
     }
 
     @Suppress("UNCHECKED_CAST")
-    inline fun <reified T> findByType(): List<T> {
-        return idMap.map { entry -> entry.value }.filter { item -> item is T } as List<T>
+    inline fun <reified T> findByType(): Map<String, T> {
+        return idMap.filter { (_,v) -> v is T } as Map<String, T>
     }
 }

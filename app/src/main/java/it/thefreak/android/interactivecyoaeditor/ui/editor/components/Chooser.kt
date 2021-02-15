@@ -20,7 +20,7 @@ class Chooser<T: IdentifiableItem>(
 ) {
     fun choose(currentlySelected: Set<String>? = null, onChoose: (T)->Unit) {
         val items = idManager.idMap.values
-            .filter { it::class == type && it.id != null && !(currentlySelected?.contains(it.id!!)?:false)}
+            .filter { it::class == type && !(currentlySelected?.contains(it.id!!)?:false) } as List<T>
 
         val adapter = object: BaseAdapter() {
             override fun getCount(): Int {
@@ -38,7 +38,7 @@ class Chooser<T: IdentifiableItem>(
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(ctx).inflate(R.layout.list_item_selection, parent, false)
                 val binding = ListItemSelectionBinding.bind(view)
-                val item = items[position] as T
+                val item = items[position]
 
                 viewHolderFactory(view, binding, item)
 
@@ -51,7 +51,7 @@ class Chooser<T: IdentifiableItem>(
             .setTitle(ctx.getString(R.string.choice_selection_requirement_dialog_title))
             .setCancelable(true)
             .setAdapter(adapter) { dialog, which ->
-                onChoose(items[which] as T)
+                onChoose(items[which])
             }
             .show()
     }

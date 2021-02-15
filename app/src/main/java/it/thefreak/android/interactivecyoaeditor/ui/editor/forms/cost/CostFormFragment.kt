@@ -40,7 +40,7 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
             }
 
             pointTypeSpinnerField.let { spinner ->
-                pointTypes = idManagerModel.idManager.findByType()
+                pointTypes = idManagerModel.idManager.findByType<PointType>().values.toList()
 
                 ArrayAdapter(
                         requireContext(),
