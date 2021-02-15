@@ -15,8 +15,8 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.A
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
 
 class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
-    private val advRepoModel by lazy { lookup<AdventureFormModel_advRepo>() }
-    private val idMaganerModel by lazy { lookup<AdventureFormModel_idManager>() }
+    private val advRepoModel by lazy { lookup<AdventureFormModelLoaderRepository>() }
+    private val idMaganerModel by lazy { lookup<AdventureFormModelIdManagerLoader>() }
 
     private lateinit var binding: AdventureFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager

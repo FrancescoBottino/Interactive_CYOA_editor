@@ -16,7 +16,7 @@ import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.choice.ChoiceFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.choiceselection.ChoiceSelectionRequirementFormKey
@@ -24,7 +24,7 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.po
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointscomparison.PointComparisonRequirementFormKey
 
 class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_fragment) {
-    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModelIdManagerLoader>() }
 
     private lateinit var binding: AdventureNodeFormFragmentBinding
     private lateinit var pointsListManager: PointsListManager

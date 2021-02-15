@@ -14,10 +14,10 @@ import it.thefreak.android.interactivecyoaeditor.model.ComparisonFunction
 import it.thefreak.android.interactivecyoaeditor.model.PointAmountRequirement
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 
 class PointAmountRequirementFormFragment: KeyedFragment(R.layout.points_amount_requirement_form_fragment) {
-    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModelIdManagerLoader>() }
 
     private lateinit var binding: PointsAmountRequirementFormFragmentBinding
 

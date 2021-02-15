@@ -15,10 +15,10 @@ import it.thefreak.android.interactivecyoaeditor.model.GroupingFunction
 import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.ChoiceRequirementBinder
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoiceSelectionRequirementListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.Chooser
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 
 class ChoiceSelectionRequirementFormFragment: KeyedFragment(R.layout.choice_selection_requirement_form_fragment) {
-    private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
+    private val idManagerModel by lazy { lookup<AdventureFormModelIdManagerLoader>() }
 
     private lateinit var binding: ChoiceSelectionRequirementFormFragmentBinding
     private lateinit var choiceSelectionRequirementListManager: ChoiceSelectionRequirementListManager

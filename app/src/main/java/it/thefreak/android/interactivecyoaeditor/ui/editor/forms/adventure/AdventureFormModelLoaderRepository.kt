@@ -8,7 +8,7 @@ import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
 import it.thefreak.android.interactivecyoaeditor.model.format
 
-class AdventureFormModel_advRepo(
+class AdventureFormModelLoaderRepository(
         /*
     private val adventureFormKey: AdventureFormKey,
     private val backstack: Backstack,
