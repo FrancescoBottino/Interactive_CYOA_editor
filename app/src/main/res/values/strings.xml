@@ -68,4 +68,13 @@
     <string name="grouping_type_at_least_one_selected">At least one selected</string>
     <string name="grouping_type_not_even_one_selected">Not even one selected</string>
     <string name="grouping_type_all_not_selected">All not selected</string>
+    <string name="point_amount_requirement_form_fragment_title">Requirement editor</string>
+    <string name="comparison_function_field_label">Comparison function</string>
+    <string name="more_than"><![CDATA[More than (>)]]></string>
+    <string name="more_than_equal"><![CDATA[More than or equal (≥)]]></string>
+    <string name="equal"><![CDATA[Equal to (=)]]></string>
+    <string name="less_than"><![CDATA[Less than (<)]]></string>
+    <string name="less_than_equal"><![CDATA[Less than or equal (≤)]]></string>
+    <string name="point_type_b_field_label">Points type A</string>
+    <string name="point_type_a_field_label">Points type B</string>
 </resources>

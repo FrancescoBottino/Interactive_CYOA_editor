@@ -1,8 +1,10 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@SerialName("PointComparisonRequirement")
 data class PointComparisonRequirement(
         override var id: String? = null,
         override var ordinal: Int? = null,
@@ -11,6 +13,7 @@ data class PointComparisonRequirement(
         var comparisonFunction: ComparisonFunction? = null,
         var pointTypeBId: String? = null,
 ): Requirement {
+    @SerialName("PointComparisonRequirementType")
     override val type: RequirementType = RequirementType.POINT_COMPARISON
     override fun deepCopy(idManager: IdManager): PointComparisonRequirement {
         return PointComparisonRequirement(

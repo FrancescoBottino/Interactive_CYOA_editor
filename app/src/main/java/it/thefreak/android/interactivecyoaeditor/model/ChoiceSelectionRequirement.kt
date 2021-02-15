@@ -1,8 +1,10 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@SerialName("ChoiceSelectionRequirement")
 data class ChoiceSelectionRequirement(
         override var id: String? = null,
         override var ordinal: Int? = null,
@@ -10,6 +12,7 @@ data class ChoiceSelectionRequirement(
         var groupingFunction: GroupingFunction? = null,
         var choicesIds: HashSet<String>? = null,
 ) : Requirement {
+    @SerialName("ChoiceSelectionRequirementType")
     override val type: RequirementType = RequirementType.CHOICE_SELECTION
     override fun deepCopy(idManager: IdManager): ChoiceSelectionRequirement {
         return ChoiceSelectionRequirement(

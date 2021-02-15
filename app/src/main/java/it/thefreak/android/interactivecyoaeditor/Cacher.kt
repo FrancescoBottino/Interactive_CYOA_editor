@@ -5,6 +5,7 @@ import it.thefreak.android.interactivecyoaeditor.FileSelector.getFile
 import it.thefreak.android.interactivecyoaeditor.FileSelector.getTopFile
 import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.loadFromJsonFile
 import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.saveToJsonFile
+import kotlinx.serialization.json.Json
 import java.io.File
 
 object Cacher {
@@ -33,14 +34,14 @@ object Cacher {
         return getFile(getTopFile(ctx, folderName).apply {mkdir()}, getFileName(key))
     }
 
-    inline fun <reified T> savePersistent(ctx: Context, key: String, bean: T) {
+    inline fun <reified T> savePersistent(ctx: Context, key: String, bean: T, format: Json = Json) {
         getBeanFile(ctx, key).let { jsonFile ->
-            saveToJsonFile(jsonFile, bean)
+            saveToJsonFile(jsonFile, bean, format)
         }
     }
-    inline fun <reified T> loadPersistent(ctx: Context, key: String): T? {
+    inline fun <reified T> loadPersistent(ctx: Context, key: String, format: Json = Json): T? {
         getBeanFile(ctx, key).let { jsonFile ->
-            return loadFromJsonFile(jsonFile)
+            return loadFromJsonFile(jsonFile, format)
         }
     }
 }

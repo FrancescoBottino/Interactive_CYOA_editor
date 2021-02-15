@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="comparison_function_values">
+        <item>@string/more_than</item>
+        <item>@string/more_than_equal</item>
+        <item>@string/equal</item>
+        <item>@string/less_than</item>
+        <item>@string/less_than_equal</item>
+    </string-array>
+</resources>
