@@ -9,7 +9,6 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
-import it.thefreak.android.interactivecyoaeditor.saveAction
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
@@ -40,8 +39,8 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
                 when (menuItem.itemId) {
                     R.id.editor_menu_save_action -> {
                         //TODO handle save action
-                        //MOCK
-                        saveAction(requireContext(), adventure)
+                        advRepoModel.saveAdventure(adventure)
+                        true
                     }
                     else -> false
                 }

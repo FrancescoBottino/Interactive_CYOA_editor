@@ -6,6 +6,7 @@ import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.loadFromJsonFil
 import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.saveToJsonFile
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
+import it.thefreak.android.interactivecyoaeditor.model.format
 
 class AdventureFormModel_advRepo(
         /*
@@ -18,7 +19,7 @@ class AdventureFormModel_advRepo(
     private var adventure: Adventure? = null
     fun getAdventure(idManager: IdManager): Adventure {
         return if(adventure == null) {
-            loadFromJsonFile<Adventure>(advUri.toFile())?.apply {
+            loadFromJsonFile<Adventure>(advUri.toFile(), format)?.apply {
                 adventure = this
                 deepRegister(idManager)
             } ?: throw Exception("cant read file $advUri")
@@ -27,6 +28,6 @@ class AdventureFormModel_advRepo(
         }
     }
     fun saveAdventure(adventure: Adventure) {
-        saveToJsonFile(advUri.toFile(), adventure)
+        saveToJsonFile(advUri.toFile(), adventure, format)
     }
 }
