@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="grouping_function_values">
+        <item>@string/grouping_type_all_selected</item>
+        <item>@string/grouping_type_at_least_one_selected</item>
+        <item>@string/grouping_type_not_even_one_selected</item>
+        <item>@string/grouping_type_all_not_selected</item>
+    </string-array>
+</resources>

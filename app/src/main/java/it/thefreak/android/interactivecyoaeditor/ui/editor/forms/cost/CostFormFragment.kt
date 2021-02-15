@@ -39,9 +39,9 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
                 backstack.goBack()
             }
 
-            pointTypeSpinnerField.let { spinner ->
-                pointTypes = idManagerModel.idManager.findByType<PointType>().values.toList()
+            pointTypes = idManagerModel.idManager.findByType<PointType>().values.toList()
 
+            pointTypeSpinnerField.let { spinner ->
                 ArrayAdapter(
                         requireContext(),
                         android.R.layout.simple_spinner_item,

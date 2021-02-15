@@ -64,4 +64,8 @@
     <string name="choice_selection_requirement_dialog_title">Select choice</string>
     <string name="multiple_choices_dialog_positive_button">Apply</string>
     <string name="multiple_choices_dialog_negative_button">Discard</string>
+    <string name="grouping_type_all_selected">All selected</string>
+    <string name="grouping_type_at_least_one_selected">At least one selected</string>
+    <string name="grouping_type_not_even_one_selected">Not even one selected</string>
+    <string name="grouping_type_all_not_selected">All not selected</string>
 </resources>

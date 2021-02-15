@@ -76,7 +76,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
             choiceTypeSpinnerField.let { spinner ->
                 ArrayAdapter.createFromResource(
                         requireContext(),
-                        R.array.choice_types_values,
+                        R.array.choice_type_values,
                         android.R.layout.simple_spinner_item
                 ).also { adapter ->
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -84,13 +84,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 }
                 spinner.onItemSelectedListener = object : MaterialSpinner.OnItemSelectedListener {
                     override fun onItemSelected(parent: MaterialSpinner, view: View?, position: Int, id: Long) {
-                        when(position) {
-                            ChoicesGroupType.OPTIONAL.ordinal ->
-                                adventureNode.choiceGroupType = ChoicesGroupType.OPTIONAL
-                            ChoicesGroupType.REQUIRED.ordinal ->
-                                adventureNode.choiceGroupType = ChoicesGroupType.REQUIRED
-                            else -> throw Exception()
-                        }
+                        adventureNode.choiceGroupType = ChoicesGroupType.values()[position]
                     }
 
                     override fun onNothingSelected(parent: MaterialSpinner) {
@@ -157,12 +151,7 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 choiceBuyLimitField.setText(it.toString())
             }
             adventureNode.choiceGroupType?.let { type ->
-                when(type) {
-                    ChoicesGroupType.OPTIONAL ->
-                        choiceTypeSpinnerField.selection = ChoicesGroupType.OPTIONAL.ordinal
-                    ChoicesGroupType.REQUIRED ->
-                        choiceTypeSpinnerField.selection = ChoicesGroupType.REQUIRED.ordinal
-                }
+                choiceTypeSpinnerField.selection = type.ordinal
             }
             adventureNode.choicesList?.let { list ->
                 choicesListManager.set(list)
