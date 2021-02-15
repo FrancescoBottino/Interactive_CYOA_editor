@@ -149,8 +149,10 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
             }
             adventureNode.choiceGroupType?.let { type ->
                 when(type) {
-                    ChoicesGroupType.OPTIONAL -> choiceTypeSpinnerField.selection = 0
-                    ChoicesGroupType.REQUIRED -> choiceTypeSpinnerField.selection = 1
+                    ChoicesGroupType.OPTIONAL ->
+                        choiceTypeSpinnerField.selection = ChoicesGroupType.OPTIONAL.ordinal
+                    ChoicesGroupType.REQUIRED ->
+                        choiceTypeSpinnerField.selection = ChoicesGroupType.REQUIRED.ordinal
                 }
             }
             adventureNode.choicesList?.let { list ->
