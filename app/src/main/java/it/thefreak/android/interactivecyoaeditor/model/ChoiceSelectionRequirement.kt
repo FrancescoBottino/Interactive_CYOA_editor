@@ -8,7 +8,7 @@ data class ChoiceSelectionRequirement(
         override var ordinal: Int? = null,
         override var icon: String? = null,
         var groupingFunction: GroupingFunction? = null,
-        var choicesIds: ArrayList<String>? = null,
+        var choicesIds: HashSet<String>? = null,
 ) : Requirement {
     override val type: RequirementType = RequirementType.CHOICE_SELECTION
     override fun deepCopy(idManager: IdManager): ChoiceSelectionRequirement {

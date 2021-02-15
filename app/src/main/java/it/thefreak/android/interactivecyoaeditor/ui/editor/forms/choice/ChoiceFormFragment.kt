@@ -9,6 +9,9 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ChoiceFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.Choice
+import it.thefreak.android.interactivecyoaeditor.model.ChoiceSelectionRequirement
+import it.thefreak.android.interactivecyoaeditor.model.PointAmountRequirement
+import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequirement
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
@@ -17,6 +20,9 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.components.Requiremen
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.cost.CostFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.choiceselection.ChoiceSelectionRequirementFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointsamount.PointAmountRequirementFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointscomparison.PointComparisonRequirementFormKey
 
 class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
@@ -83,7 +89,14 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                         idManagerModel.idManager,
                         choice::conditions
                 ) {
-                    //todo open requirement form
+                    when(it) {
+                        is PointAmountRequirement ->
+                            backstack.goTo(PointAmountRequirementFormKey(it.id!!))
+                        is PointComparisonRequirement ->
+                            backstack.goTo(PointComparisonRequirementFormKey(it.id!!))
+                        is ChoiceSelectionRequirement ->
+                            backstack.goTo(ChoiceSelectionRequirementFormKey(it.id!!))
+                    }
                 }
             }
             multiBuySwitchField.setOnCheckedChangeListener { _, checked ->
@@ -128,7 +141,14 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                         idManagerModel.idManager,
                         choice::requirements,
                 ) {
-                    //todo open requirement form
+                    when(it) {
+                        is PointAmountRequirement ->
+                            backstack.goTo(PointAmountRequirementFormKey(it.id!!))
+                        is PointComparisonRequirement ->
+                            backstack.goTo(PointComparisonRequirementFormKey(it.id!!))
+                        is ChoiceSelectionRequirement ->
+                            backstack.goTo(ChoiceSelectionRequirementFormKey(it.id!!))
+                    }
                 }
             }
         }

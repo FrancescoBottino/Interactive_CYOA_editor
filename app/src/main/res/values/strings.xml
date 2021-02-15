@@ -58,4 +58,10 @@
     <string name="undefined_requirement">Undefined</string>
     <string name="requirement_choice_dialog_title">Requirement type</string>
     <string name="multi_buy_field_label">Can be selected multiple times</string>
+    <string name="grouping_type_field_label">Grouping type</string>
+    <string name="choice_selection_requirement_form_fragment_title">Requirement editor</string>
+    <string name="choice_requirement_list_title_label">Choices</string>
+    <string name="choice_selection_requirement_dialog_title">Select choice</string>
+    <string name="multiple_choices_dialog_positive_button">Apply</string>
+    <string name="multiple_choices_dialog_negative_button">Discard</string>
 </resources>

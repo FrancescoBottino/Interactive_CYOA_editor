@@ -38,7 +38,7 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
                         object : ItemTouchCallback {
                             override fun itemTouchDropped(oldPosition: Int, newPosition: Int) {
                                 super.itemTouchDropped(oldPosition, newPosition)
-                                updatePointsPositions()
+                                updatePositions()
                             }
 
                             override fun itemTouchStartDrag(viewHolder: RecyclerView.ViewHolder) {
@@ -60,7 +60,7 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
                 itemsListAdapter.apply {
                     remove(getAdapterPosition(item))
                 }
-                updatePointsPositions()
+                updatePositions()
                 updateVisibleContent()
             }
         }
@@ -74,7 +74,7 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
                 makeBinder(copiedItem).let { copiedItemBinder ->
                     itemsListAdapter.apply {
                         add(getAdapterPosition(item) + 1, copiedItemBinder)
-                        updatePointsPositions()
+                        updatePositions()
                         updateVisibleContent()
                     }
                 }
@@ -82,7 +82,7 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
         }
     }
 
-    private fun updatePointsPositions() {
+    private fun updatePositions() {
         itemsListAdapter.adapterItems.forEach {
             it.content.ordinal = itemsListAdapter.adapterItems.indexOf(it) + 1
         }

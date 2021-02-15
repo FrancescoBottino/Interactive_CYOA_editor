@@ -10,8 +10,7 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureNodeFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
-import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
-import it.thefreak.android.interactivecyoaeditor.model.ChoicesGroupType
+import it.thefreak.android.interactivecyoaeditor.model.*
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
@@ -20,6 +19,9 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.components.Requiremen
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModel_idManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.choice.ChoiceFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.choiceselection.ChoiceSelectionRequirementFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointsamount.PointAmountRequirementFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointscomparison.PointComparisonRequirementFormKey
 
 class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModel_idManager>() }
@@ -122,7 +124,14 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                         idManagerModel.idManager,
                         adventureNode::requirements,
                 ) {
-                    //todo open requirement form
+                    when(it) {
+                        is PointAmountRequirement ->
+                            backstack.goTo(PointAmountRequirementFormKey(it.id!!))
+                        is PointComparisonRequirement ->
+                            backstack.goTo(PointComparisonRequirementFormKey(it.id!!))
+                        is ChoiceSelectionRequirement ->
+                            backstack.goTo(ChoiceSelectionRequirementFormKey(it.id!!))
+                    }
                 }
             }
         }

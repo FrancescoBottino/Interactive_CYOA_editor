@@ -17,6 +17,20 @@ fun ArrayList<String>?.copy(): ArrayList<String>? {
         }
     }
 }
+fun <T:IdentifiableItem> HashSet<T>?.copy(idManager: IdManager): HashSet<T>? {
+    return this?.let { set ->
+        HashSet<T>().apply {
+            addAll( set.map { it.deepCopy(idManager) as T } )
+        }
+    }
+}
+fun HashSet<String>?.copy(): HashSet<String>? {
+    return this?.let { set ->
+        HashSet<String>().apply {
+            addAll(set.map { it.copy()!! })
+        }
+    }
+}
 
 fun <T: IdentifiableItem> T.assignNewId(idManager: IdManager): T {
     return this.apply {
@@ -38,12 +52,23 @@ fun <T: IdentifiableItem> T.removeFromIdMap(idManager: IdManager): T {
 
 fun <T> KMutableProperty0<ArrayList<T>?>.init(): ArrayList<T> {
     return this.let {
-        var arr = this.get()
-        if(arr == null) {
-            arr = ArrayList()
-            it.set(arr)
+        var arrList = this.get()
+        if(arrList == null) {
+            arrList = ArrayList()
+            it.set(arrList)
         }
-        arr
+        arrList
+    }
+}
+
+fun <T> KMutableProperty0<HashSet<T>?>.init(): HashSet<T> {
+    return this.let {
+        var hashSet = this.get()
+        if(hashSet == null) {
+            hashSet = HashSet()
+            it.set(hashSet)
+        }
+        hashSet
     }
 }
 
