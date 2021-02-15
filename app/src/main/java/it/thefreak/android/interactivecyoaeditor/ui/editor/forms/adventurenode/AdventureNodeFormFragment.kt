@@ -82,10 +82,11 @@ class AdventureNodeFormFragment: KeyedFragment(R.layout.adventure_node_form_frag
                 }
                 spinner.onItemSelectedListener = object : MaterialSpinner.OnItemSelectedListener {
                     override fun onItemSelected(parent: MaterialSpinner, view: View?, position: Int, id: Long) {
-                        //0 optional, 1 required
                         when(position) {
-                            0 -> adventureNode.choiceGroupType = ChoicesGroupType.OPTIONAL
-                            1 -> adventureNode.choiceGroupType = ChoicesGroupType.REQUIRED
+                            ChoicesGroupType.OPTIONAL.ordinal ->
+                                adventureNode.choiceGroupType = ChoicesGroupType.OPTIONAL
+                            ChoicesGroupType.REQUIRED.ordinal ->
+                                adventureNode.choiceGroupType = ChoicesGroupType.REQUIRED
                             else -> throw Exception()
                         }
                     }
