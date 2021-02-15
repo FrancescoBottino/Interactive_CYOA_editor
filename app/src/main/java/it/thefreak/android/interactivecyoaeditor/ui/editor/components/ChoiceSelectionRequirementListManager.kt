@@ -7,7 +7,7 @@ import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsList
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorView
 import kotlin.reflect.KMutableProperty0
 
-class ChoiceRequirementListManager(
+class ChoiceSelectionRequirementListManager(
         ctx: Context,
         itemsListEditorView: ItemsListEditorView,
         container: KMutableProperty0<HashSet<String>?>,
