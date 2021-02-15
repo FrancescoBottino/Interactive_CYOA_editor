@@ -86,6 +86,15 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
                     //todo open requirement form
                 }
             }
+            multiBuySwitchField.setOnCheckedChangeListener { _, checked ->
+                choice.multiBuy = checked
+
+                if(checked) {
+                    buyLimitFieldLayout.show()
+                } else {
+                    buyLimitFieldLayout.hide()
+                }
+            }
             buyLimitField.onTextChanged {
                 choice.buyLimit = it.toIntOrNull()
             }
@@ -132,28 +141,30 @@ class ChoiceFormFragment: KeyedFragment(R.layout.choice_form_fragment) {
 
             descriptionField.setText(choice.description)
 
-            (choice.activatable?:true).let { activatable ->
-                activatableSwitchField.isChecked = activatable
+            val activatable = (choice.activatable?:true)
+            activatableSwitchField.isChecked = activatable
 
-                (choice.automaticallyActivated?:false).let { auto ->
-                    automaticallyActivatedSwitchField.isChecked = auto
+            val autoActive = (choice.automaticallyActivated?:false)
+            automaticallyActivatedSwitchField.isChecked = autoActive
 
-                    if(activatable) {
-                        automaticallyActivatedSwitchField.hide()
-                        conditionsList.hide()
-                    } else {
-                        if(auto) {
-                            conditionsList.show()
-                        } else {
-                            conditionsList.hide()
-                        }
-                        automaticallyActivatedSwitchField.show()
-                    }
+            if(activatable) {
+                automaticallyActivatedSwitchField.hide()
+                conditionsList.hide()
+            } else {
+                if(autoActive) {
+                    conditionsList.show()
+                } else {
+                    conditionsList.hide()
                 }
+                automaticallyActivatedSwitchField.show()
             }
 
             choice.conditions?.let { list ->
                 conditionsListManager.set(list)
+            }
+
+            (choice.multiBuy?:false).let { multi ->
+                multiBuySwitchField.isChecked = multi
             }
 
             choice.buyLimit?.let {

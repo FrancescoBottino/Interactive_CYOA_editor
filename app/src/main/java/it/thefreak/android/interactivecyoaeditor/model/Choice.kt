@@ -16,6 +16,7 @@ data class Choice(
         var activatable: Boolean? = null,
         var automaticallyActivated: Boolean? = null,
         var conditions: ArrayList<Requirement>? = null,
+        var multiBuy: Boolean? = null,
         var buyLimit: Int? = null,
         var costs: ArrayList<Cost>? = null,
         var subNodes: ArrayList<AdventureNode>? = null,
@@ -32,6 +33,7 @@ data class Choice(
                 activatable = this.activatable,
                 automaticallyActivated = this.automaticallyActivated,
                 conditions = this.conditions.copy(idManager),
+                multiBuy = this.multiBuy,
                 buyLimit = this.buyLimit,
                 costs = this.costs.copy(idManager),
                 subNodes = this.subNodes.copy(idManager)

@@ -87,6 +87,14 @@
                 android:layout_marginTop="8dp"
                 app:title_text="@string/conditions_list_title_label" />
 
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/multi_buy_switch_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="@string/multi_buy_field_label" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/buy_limit_field_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
