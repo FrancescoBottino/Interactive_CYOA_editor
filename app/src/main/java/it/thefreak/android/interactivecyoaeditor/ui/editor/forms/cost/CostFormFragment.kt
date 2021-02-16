@@ -13,7 +13,7 @@ import it.thefreak.android.interactivecyoaeditor.getAdapterWrapper
 import it.thefreak.android.interactivecyoaeditor.model.Cost
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostModifiersListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.CostModifiersListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifier.CostModifierFormKey
 

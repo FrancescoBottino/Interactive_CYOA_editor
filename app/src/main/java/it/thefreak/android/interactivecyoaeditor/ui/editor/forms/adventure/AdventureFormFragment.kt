@@ -9,8 +9,8 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.AdventureNodesListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.PointsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
 

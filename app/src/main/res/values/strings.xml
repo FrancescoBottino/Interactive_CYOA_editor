@@ -77,4 +77,5 @@
     <string name="less_than_equal"><![CDATA[Less than or equal (≤)]]></string>
     <string name="point_type_b_field_label">Points type A</string>
     <string name="point_type_a_field_label">Points type B</string>
+    <string name="searchbar_hint">Search...</string>
 </resources>

@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.ui.editor.components
+package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.itemslisteditorfactories
 
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
 import it.thefreak.android.interactivecyoaeditor.model.ListableItem

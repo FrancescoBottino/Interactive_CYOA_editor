@@ -14,9 +14,9 @@ import it.thefreak.android.interactivecyoaeditor.model.PointAmountRequirement
 import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequirement
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.AdventureNodesListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.CostsListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.AdventureNodesListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.CostsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventurenode.AdventureNodeFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.cost.CostFormKey

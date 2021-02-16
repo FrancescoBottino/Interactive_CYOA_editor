@@ -12,9 +12,8 @@ import it.thefreak.android.interactivecyoaeditor.databinding.ChoiceSelectionRequ
 import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.model.ChoiceSelectionRequirement
 import it.thefreak.android.interactivecyoaeditor.model.GroupingFunction
-import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.ChoiceRequirementBinder
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoiceSelectionRequirementListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.Chooser
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.chooserdialog.ChoiceChooser
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.ChoiceSelectionRequirementListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 
 class ChoiceSelectionRequirementFormFragment: KeyedFragment(R.layout.choice_selection_requirement_form_fragment) {
@@ -22,7 +21,7 @@ class ChoiceSelectionRequirementFormFragment: KeyedFragment(R.layout.choice_sele
 
     private lateinit var binding: ChoiceSelectionRequirementFormFragmentBinding
     private lateinit var choiceSelectionRequirementListManager: ChoiceSelectionRequirementListManager
-    private lateinit var chooser: Chooser<Choice>
+    private lateinit var chooser: ChoiceChooser
 
     private lateinit var choiceSelectionRequirement: ChoiceSelectionRequirement
 
@@ -33,12 +32,9 @@ class ChoiceSelectionRequirementFormFragment: KeyedFragment(R.layout.choice_sele
             choiceSelectionRequirement = idManagerModel.idManager.idMap[choiceSelectionRequirementId] as ChoiceSelectionRequirement
         }
 
-        chooser = Chooser(
+        chooser = ChoiceChooser(
             requireContext(),
-            Choice::class,
-            R.string.choice_selection_requirement_dialog_title,
             idManagerModel.idManager,
-            ChoiceRequirementBinder::selectionBinding
         )
 
         binding = ChoiceSelectionRequirementFormFragmentBinding.bind(view)

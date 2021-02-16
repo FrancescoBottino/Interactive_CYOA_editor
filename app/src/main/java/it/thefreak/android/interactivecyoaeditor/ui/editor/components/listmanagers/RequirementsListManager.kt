@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.ui.editor.components
+package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers
 
 import android.content.Context
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

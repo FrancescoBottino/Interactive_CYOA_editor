@@ -14,7 +14,7 @@ import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequiremen
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.choiceselection.ChoiceSelectionRequirementFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointsamount.PointAmountRequirementFormKey

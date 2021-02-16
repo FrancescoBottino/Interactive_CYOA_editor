@@ -1,16 +1,17 @@
-package it.thefreak.android.interactivecyoaeditor.ui.editor.components
+package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.itemslisteditorfactories
 
 import it.thefreak.android.interactivecyoaeditor.model.ListableItem
 import it.thefreak.android.interactivecyoaeditor.model.init
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.chooserdialog.Chooser
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorItemListener
 import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty0
 
 class ItemsListPassiveIdsListenerFactory<T: ListableItem>(
-    private val type: KClass<T>,
-    private val chooser: Chooser<T>,
-    private val container: KMutableProperty0<HashSet<String>?>,
+        private val type: KClass<T>,
+        private val chooser: Chooser<T>,
+        private val container: KMutableProperty0<HashSet<String>?>,
 ): ItemsListEditorItemListener<T> {
     override fun onItemDelete(item: T): Boolean {
         container.init().remove(item.id)

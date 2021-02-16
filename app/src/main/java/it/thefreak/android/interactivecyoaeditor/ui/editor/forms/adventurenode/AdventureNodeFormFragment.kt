@@ -13,9 +13,9 @@ import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.model.*
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.ChoicesListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.PointsListManager
-import it.thefreak.android.interactivecyoaeditor.ui.editor.components.RequirementsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.ChoicesListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.PointsListManager
+import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.choice.ChoiceFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.pointstate.PointTypeFormKey
