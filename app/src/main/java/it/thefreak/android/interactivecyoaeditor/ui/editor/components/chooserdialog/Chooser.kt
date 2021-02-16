@@ -27,7 +27,6 @@ open class Chooser<T: IdentifiableItem>(
                 .setOnSelection { item, dialog ->
                     dialog.dismiss()
                     onChoose(item)
-                }
-
+                }.show()
     }
 }
