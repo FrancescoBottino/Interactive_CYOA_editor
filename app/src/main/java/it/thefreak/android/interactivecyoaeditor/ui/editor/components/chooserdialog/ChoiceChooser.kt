@@ -8,7 +8,6 @@ import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.hideIf
 import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.views.itemselectordialog.SingleItemSelectorDialogBuilder
 
 class ChoiceChooser(
@@ -17,14 +16,11 @@ class ChoiceChooser(
 ): Chooser<Choice>(
         ctx,
         Choice::class,
-        R.string.choice_selection_requirement_dialog_title,
-        R.layout.list_item_generic,
-        viewBinder,
-        idManager
+        idManager,
 ) {
     companion object {
-        object viewBinder: SingleItemSelectorDialogBuilder.ViewBinder<Choice> {
-            override fun bindView(item: Choice, view: View) {
+        private object ViewBinderObject: SingleItemSelectorDialogBuilder.ViewBinder<Choice> {
+            override fun bindView(item: Choice, view: View): View {
                 val binding = ListItemGenericBinding.bind(view)
 
                 binding.titleLabel.text = if(item.name.isNullOrBlank()) {
@@ -35,29 +31,45 @@ class ChoiceChooser(
                     item.id.isNullOrBlank()
                 }.text = item.id
 
+                binding.icon.hide()
                 binding.subtitleLabel.hide()
                 binding.deleteButton.hide()
                 binding.copyButton.hide()
-                binding.deleteButton.onClick(null)
-                binding.copyButton.onClick(null)
-                binding.content.onClick(null)
+
+                return binding.content
             }
 
-            override fun unbindView(item: Choice, view: View) {
+            override fun unbindView(item: Choice, view: View): View {
                 val binding = ListItemGenericBinding.bind(view)
 
                 binding.titleLabel.text = ""
                 binding.overtext.text = ""
+                binding.icon.hide()
+                binding.subtitleLabel.hide()
                 binding.deleteButton.hide()
                 binding.copyButton.hide()
 
-                binding.titleLabel.text = ""
-                binding.overtext.text = ""
-                binding.subtitleLabel.hide()
-                binding.deleteButton.onClick(null)
-                binding.copyButton.onClick(null)
-                binding.content.onClick(null)
+                return binding.content
             }
         }
+    }
+
+    override val name: Int
+        get() = R.string.choice_selection_requirement_dialog_title
+    override val layout: Int
+        get() = R.layout.list_item_generic
+    override val isSearchFilteringEnabled: Boolean
+        get() = true
+    override val isNegativeButtonEnabled: Boolean
+        get() = true
+    override val viewBinder: SingleItemSelectorDialogBuilder.ViewBinder<Choice>
+        get() = ViewBinderObject
+
+    override fun List<Choice>.sorting(): List<Choice> {
+        return this.sortedBy { it.name }
+    }
+
+    override fun searchFilteringPredicate(item: Choice, query: CharSequence?): Boolean {
+        return item.name?.contains(query?:"", ignoreCase = true)?:false
     }
 }

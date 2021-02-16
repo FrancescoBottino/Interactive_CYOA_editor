@@ -1,5 +1,7 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import kotlin.reflect.KClass
+
 class IdManager {
     companion object {
         var len = 6
@@ -14,7 +16,7 @@ class IdManager {
         return (1..len)
                 .map { kotlin.random.Random.nextInt(0, charPool.size) }
                 .map(charPool::get)
-                .joinToString("");
+                .joinToString("")
     }
 
     fun getNewId(): String {
@@ -53,7 +55,12 @@ class IdManager {
     }
 
     @Suppress("UNCHECKED_CAST")
-    inline fun <reified T> findByType(): Map<String, T> {
+    inline fun <reified T: IdentifiableItem> findByType(): Map<String, T> {
         return idMap.filter { (_,v) -> v is T } as Map<String, T>
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun <T: IdentifiableItem> findByType(type: KClass<T>): Map<String, T> {
+        return idMap.filter { (_,v) -> v::class == type } as Map<String, T>
     }
 }

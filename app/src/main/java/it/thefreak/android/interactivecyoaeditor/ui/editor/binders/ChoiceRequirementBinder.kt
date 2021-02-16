@@ -5,7 +5,6 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.databinding.ListItemSelectionBinding
 import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
@@ -14,18 +13,6 @@ class ChoiceRequirementBinder constructor(
         choice: Choice,
         listener: ItemsListEditorBinderListener<ChoiceRequirementBinder>? = null
 ) : ItemsListEditorGenericBinder<Choice, ChoiceRequirementBinder>(choice, listener), IDraggable {
-
-    companion object {
-        fun selectionBinding(root: View, binding: ListItemSelectionBinding, item: Choice) {
-            binding.titleLabel.text = if(item.name.isNullOrBlank()) {
-                root.context.getString(R.string.unnamed_choice)
-            } else item.name!!
-
-            binding.overtext.hideIf {
-                item.id.isNullOrBlank()
-            }.text = item.id
-        }
-    }
 
     class ViewHolder(
         private val root: View
