@@ -2,6 +2,13 @@ package it.thefreak.android.interactivecyoaeditor.model
 
 import kotlinx.serialization.Serializable
 
+/**
+ * TODO:
+ *  ADD MORPHING ON SPECIAL-REQUIREMENTS MET (ON SELECTION EX.: CHOICE SELECTION, SELF, MORPHS INTO NON-ACTIVATABLE)
+ *  ADD LIST OF CHOICES TO FORCE ACTIVE OR INACTIVE ON SELECTION
+ *  LINK MULTIBUY TO A POINTTYPE
+ */
+
 @Serializable
 data class Choice(
         override var id: String? = null,
