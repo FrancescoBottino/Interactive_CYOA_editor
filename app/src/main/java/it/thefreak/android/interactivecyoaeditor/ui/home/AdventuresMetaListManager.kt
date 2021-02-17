@@ -7,7 +7,7 @@ import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsList
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorView
 
 class AdventuresMetaListManager (
-        ctx: Context?,
+        ctx: Context,
         itemsListEditorView: ItemsListEditorView,
         itemsListActionsListener: ItemsListEditorItemListener<AdventureMeta>,
 ): ItemsListEditorGenericManager<AdventureMeta, AdventureMetaBinder>(
