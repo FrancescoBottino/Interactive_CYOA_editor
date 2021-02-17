@@ -15,6 +15,7 @@ data class Adventure(
         var author: String? = null,
         var initialPoints: ArrayList<PointType>? = null,
         var adventureNodesList: ArrayList<AdventureNode>? = null,
+        var engineVersion: String? = null,
 ): ListableItem, NarrativeItem, StylableItem {
     override fun deepCopy(idManager: IdManager): Adventure {
         return Adventure(
@@ -27,6 +28,7 @@ data class Adventure(
                 author = this.author.copy(),
                 initialPoints = this.initialPoints.copy(idManager),
                 adventureNodesList = this.adventureNodesList.copy(idManager),
+                engineVersion = this.engineVersion,
         )
     }
 

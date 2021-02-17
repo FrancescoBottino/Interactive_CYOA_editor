@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifier
+package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifiers.additivecostmodifier
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,9 @@ import com.zhuinden.simplestackextensions.fragments.KeyedFragment
 import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
-import it.thefreak.android.interactivecyoaeditor.databinding.CostModifierFormFragmentBinding
+import it.thefreak.android.interactivecyoaeditor.databinding.AdditiveCostModifierFormFragmentBinding
+import it.thefreak.android.interactivecyoaeditor.model.AdditiveCostModifier
 import it.thefreak.android.interactivecyoaeditor.model.ChoiceSelectionRequirement
-import it.thefreak.android.interactivecyoaeditor.model.CostModifier
 import it.thefreak.android.interactivecyoaeditor.model.PointAmountRequirement
 import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequirement
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
@@ -18,29 +18,29 @@ import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.ch
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointsamount.PointAmountRequirementFormKey
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.requirements.pointscomparison.PointComparisonRequirementFormKey
 
-class CostModifierFormFragment: KeyedFragment(R.layout.cost_modifier_form_fragment) {
+class AdditiveCostModifierFormFragment: KeyedFragment(R.layout.additive_cost_modifier_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModelIdManagerLoader>() }
 
-    private lateinit var binding: CostModifierFormFragmentBinding
+    private lateinit var binding: AdditiveCostModifierFormFragmentBinding
     private lateinit var requirementsListManager: RequirementsListManager
 
-    private lateinit var costModifier: CostModifier
+    private lateinit var costModifier: AdditiveCostModifier
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(getKey<CostModifierFormKey>()) {
-            costModifier = idManagerModel.idManager.idMap[costModifierId] as CostModifier
+        with(getKey<AdditiveCostModifierFormKey>()) {
+            costModifier = idManagerModel.idManager.idMap[costModifierId] as AdditiveCostModifier
         }
 
-        binding = CostModifierFormFragmentBinding.bind(view)
+        binding = AdditiveCostModifierFormFragmentBinding.bind(view)
         with(binding) {
             topAppBar.setNavigationOnClickListener {
                 backstack.goBack()
             }
 
             costModAmountField.onTextChanged {
-                costModifier.amount = it.toIntOrNull()
+                costModifier.amountInt = it.toIntOrNull()
             }
 
             isHiddenSwitchField.setOnCheckedChangeListener { _, checked ->
@@ -70,7 +70,7 @@ class CostModifierFormFragment: KeyedFragment(R.layout.cost_modifier_form_fragme
     override fun onResume() {
         super.onResume()
         with(binding) {
-            costModifier.amount?.let {
+            costModifier.amountInt?.let {
                 costModAmountField.setText(it.toString())
             }
 

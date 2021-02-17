@@ -79,4 +79,6 @@
     <string name="point_type_a_field_label">Points type B</string>
     <string name="searchbar_hint">Search…</string>
     <string name="chooser_dialog_cancel">Cancel</string>
+    <string name="cost_modifier_type_additive">Additive</string>
+    <string name="cost_modifier_type_multiplicative">Multiplicative</string>
 </resources>

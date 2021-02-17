@@ -11,6 +11,10 @@ val module = SerializersModule {
         subclass(PointAmountRequirement::class)
         subclass(PointComparisonRequirement::class)
     }
+    polymorphic(CostModifier::class) {
+        subclass(AdditiveCostModifier::class)
+        subclass(MultiplicativeCostModifier::class)
+    }
 }
 
 val format = Json { serializersModule = module }

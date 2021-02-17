@@ -6,6 +6,7 @@ import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
 import it.thefreak.android.interactivecyoaeditor.model.CostModifier
+import it.thefreak.android.interactivecyoaeditor.model.CostModifierType
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
@@ -24,9 +25,15 @@ class CostModifierBinder constructor(
         }
 
         override fun bindView(item: CostModifierBinder, payloads: List<Any>) {
-            binding.titleLabel.hideIf {
-                item.content.amount == null
-            }.text = item.content.amount.toString()
+            //TODO, represent the cost modifier in some descriptive way
+
+            val typeRes = when(item.content.type) {
+                CostModifierType.ADDITIVE -> {R.string.cost_modifier_type_additive}
+                CostModifierType.MULTIPLICATIVE -> {R.string.cost_modifier_type_multiplicative}
+            }
+            val displayedName = root.context.getString(typeRes)
+
+            binding.titleLabel.text = displayedName
 
             binding.overtext.hideIf {
                 item.content.id.isNullOrBlank()

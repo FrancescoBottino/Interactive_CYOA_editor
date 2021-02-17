@@ -10,12 +10,15 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.CostFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.getAdapterWrapper
+import it.thefreak.android.interactivecyoaeditor.model.AdditiveCostModifier
 import it.thefreak.android.interactivecyoaeditor.model.Cost
+import it.thefreak.android.interactivecyoaeditor.model.MultiplicativeCostModifier
 import it.thefreak.android.interactivecyoaeditor.model.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.CostModifiersListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifier.CostModifierFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifiers.additivecostmodifier.AdditiveCostModifierFormKey
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.costmodifiers.multiplicativecostmodifier.MultiplicativeCostModifierFormKey
 
 class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
     private val idManagerModel by lazy { lookup<AdventureFormModelIdManagerLoader>() }
@@ -78,8 +81,13 @@ class CostFormFragment: KeyedFragment(R.layout.cost_form_fragment) {
                         list,
                         idManagerModel.idManager,
                         cost::modifiers,
-                ) { item ->
-                    backstack.goTo(CostModifierFormKey(item.id!!))
+                ) {
+                    when(it) {
+                        is AdditiveCostModifier ->
+                            backstack.goTo(AdditiveCostModifierFormKey(it.id!!))
+                        is MultiplicativeCostModifier ->
+                            backstack.goTo(MultiplicativeCostModifierFormKey(it.id!!))
+                    }
                 }
             }
         }

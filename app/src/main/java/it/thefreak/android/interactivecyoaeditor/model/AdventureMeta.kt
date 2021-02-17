@@ -11,6 +11,7 @@ data class AdventureMeta(
         var name: String? = null,
         var version: String? = null,
         var author: String? = null,
+        var engineVersion: String? = null,
         @Transient var adventureUri: Uri? = null,
 ): ListableItem {
     //TODO what do to with this class?
@@ -35,6 +36,7 @@ data class AdventureMeta(
             adv.name,
             adv.version,
             adv.author,
+            adv.engineVersion,
             uri,
     )
 }

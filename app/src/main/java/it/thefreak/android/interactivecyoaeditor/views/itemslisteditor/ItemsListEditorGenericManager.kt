@@ -17,7 +17,7 @@ import it.thefreak.android.interactivecyoaeditor.show
 
 
 abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEditorGenericBinder<T, B>>(
-        ctx: Context?,
+        ctx: Context,
         itemsListEditorView: ItemsListEditorView,
         val binderFactory: (T, ItemsListEditorBinderListener<B>) -> B,
         val itemsListActionsListener: ItemsListEditorItemListener<T>
