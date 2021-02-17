@@ -26,7 +26,6 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
 
     private val itemsListAdapter: FastItemAdapter<B> = FastItemAdapter()
     private val recyclerView = itemsListEditorView.binding.recyclerView
-    private val collapsedViewMore = itemsListEditorView.binding.collapsedViewMore
     private val emptyListPlaceholder = itemsListEditorView.binding.emptyListPlaceholder
 
     private val addButton = itemsListEditorView.binding.addButton
@@ -93,7 +92,6 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
         if(collapsed) {
             recyclerView.hide()
             emptyListPlaceholder.hide()
-            collapsedViewMore.show()
         } else {
             if(isEmpty) {
                 emptyListPlaceholder.show()
@@ -102,7 +100,6 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
                 recyclerView.show()
                 emptyListPlaceholder.hide()
             }
-            collapsedViewMore.hide()
         }
     }
 
@@ -136,9 +133,6 @@ abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEdit
         }
 
         collapseButton.onClick {
-            collapse()
-        }
-        collapsedViewMore.onClick {
             collapse()
         }
     }

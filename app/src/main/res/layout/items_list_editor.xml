@@ -13,6 +13,7 @@
         android:animateLayoutChanges="true"
         android:background="@drawable/border_outline"
         android:gravity="center_horizontal"
+        android:minHeight="2dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,31 +28,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="38dp"
             android:layout_marginEnd="8dp"
-            android:overScrollMode="never"
-            android:visibility="visible"
             android:clipToPadding="false"
+            android:overScrollMode="never"
             android:paddingBottom="20dp"
+            android:visibility="visible"
             tools:itemCount="2"
             tools:listitem="@layout/list_item_generic" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/collapsed_view_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="20dp"
-            android:visibility="visible"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
-            app:cardMaxElevation="8dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
-        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/empty_list_placeholder"
