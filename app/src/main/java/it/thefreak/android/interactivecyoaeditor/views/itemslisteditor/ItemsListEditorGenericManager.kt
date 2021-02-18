@@ -15,7 +15,6 @@ import it.thefreak.android.interactivecyoaeditor.model.ListableItem
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.show
 
-
 abstract class ItemsListEditorGenericManager<T : ListableItem, B : ItemsListEditorGenericBinder<T, B>>(
         ctx: Context,
         itemsListEditorView: ItemsListEditorView,
