@@ -9,7 +9,7 @@ class IdManager {
         HashMap()
     }
 
-    fun getNewId(): String = UniqueIdGenerator.getNewId { newId -> idMap.containsKey(newId) }
+    fun getNewId(): String = UniqueIdGenerator.getNewId { newId -> !idMap.containsKey(newId) }
 
     fun addWithNewId(obj: IdManageableItem): String {
         return getNewId().apply {
