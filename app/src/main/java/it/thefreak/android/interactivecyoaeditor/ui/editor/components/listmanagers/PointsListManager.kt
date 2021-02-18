@@ -2,7 +2,7 @@ package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanag
 
 import android.content.Context
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.model.PointType
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointType
 import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.PointTypeBinder
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.itemslisteditorfactories.ItemsListEditorListenerFactory
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericManager
@@ -10,11 +10,11 @@ import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsList
 import kotlin.reflect.KMutableProperty0
 
 class PointsListManager (
-        ctx: Context,
-        itemsListEditorView: ItemsListEditorView,
-        idManager: IdManager,
-        container: KMutableProperty0<ArrayList<PointType>?>,
-        clickListener: (PointType) -> Unit,
+    ctx: Context,
+    itemsListEditorView: ItemsListEditorView,
+    idManager: IdManager,
+    container: KMutableProperty0<ArrayList<PointType>?>,
+    clickListener: (PointType) -> Unit,
 ): ItemsListEditorGenericManager<PointType, PointTypeBinder>(
         ctx,
         itemsListEditorView,

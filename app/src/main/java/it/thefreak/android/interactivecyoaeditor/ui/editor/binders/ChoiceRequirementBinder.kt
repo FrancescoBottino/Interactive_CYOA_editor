@@ -5,13 +5,13 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.model.Choice
+import it.thefreak.android.interactivecyoaeditor.model.entities.Choice
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class ChoiceRequirementBinder constructor(
-        choice: Choice,
-        listener: ItemsListEditorBinderListener<ChoiceRequirementBinder>? = null
+    choice: Choice,
+    listener: ItemsListEditorBinderListener<ChoiceRequirementBinder>? = null
 ) : ItemsListEditorGenericBinder<Choice, ChoiceRequirementBinder>(choice, listener), IDraggable {
 
     class ViewHolder(

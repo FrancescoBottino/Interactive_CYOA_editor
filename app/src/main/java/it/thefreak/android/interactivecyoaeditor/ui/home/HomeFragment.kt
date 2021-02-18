@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.net.toFile
 import com.zhuinden.simplestackextensions.fragments.KeyedFragment
-import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
-import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.loadFromJsonFile
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.HomeFragmentBinding
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
-import it.thefreak.android.interactivecyoaeditor.model.AdventureMeta
-import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormKey
+import it.thefreak.android.interactivecyoaeditor.model.entities.Adventure
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdventureMeta
+import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.loadFromJsonFile
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorItemListener
 
 class HomeFragment: KeyedFragment(R.layout.home_fragment) {
@@ -35,7 +33,8 @@ class HomeFragment: KeyedFragment(R.layout.home_fragment) {
                     }
 
                     override fun onItemClick(item: AdventureMeta) {
-                        backstack.goTo(AdventureFormKey(item.adventureUri!!))
+                        //Todo fix
+                        //backstack.goTo(AdventureFormKey(item.adventureUri!!))
                     }
 
                     override fun onItemCopy(item: AdventureMeta): AdventureMeta? {

@@ -9,9 +9,9 @@ import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ChoiceSelectionRequirementFormFragmentBinding
-import it.thefreak.android.interactivecyoaeditor.model.Choice
-import it.thefreak.android.interactivecyoaeditor.model.ChoiceSelectionRequirement
-import it.thefreak.android.interactivecyoaeditor.model.GroupingFunction
+import it.thefreak.android.interactivecyoaeditor.model.entities.Choice
+import it.thefreak.android.interactivecyoaeditor.model.entities.ChoiceSelectionRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.GroupingFunction
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.chooserdialog.ChoiceChooser
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.ChoiceSelectionRequirementListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader

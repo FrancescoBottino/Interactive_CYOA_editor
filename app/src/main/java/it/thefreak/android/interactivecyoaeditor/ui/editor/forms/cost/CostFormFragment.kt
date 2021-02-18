@@ -10,10 +10,10 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.CostFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.getAdapterWrapper
-import it.thefreak.android.interactivecyoaeditor.model.AdditiveCostModifier
-import it.thefreak.android.interactivecyoaeditor.model.Cost
-import it.thefreak.android.interactivecyoaeditor.model.MultiplicativeCostModifier
-import it.thefreak.android.interactivecyoaeditor.model.PointType
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdditiveCostModifier
+import it.thefreak.android.interactivecyoaeditor.model.entities.Cost
+import it.thefreak.android.interactivecyoaeditor.model.entities.MultiplicativeCostModifier
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointType
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.CostModifiersListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader

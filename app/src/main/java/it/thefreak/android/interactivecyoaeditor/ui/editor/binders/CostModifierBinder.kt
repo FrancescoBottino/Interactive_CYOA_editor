@@ -5,14 +5,14 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.model.CostModifier
-import it.thefreak.android.interactivecyoaeditor.model.CostModifierType
+import it.thefreak.android.interactivecyoaeditor.model.entities.CostModifier
+import it.thefreak.android.interactivecyoaeditor.model.entities.CostModifierType
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class CostModifierBinder constructor(
-        costModifier: CostModifier,
-        listener: ItemsListEditorBinderListener<CostModifierBinder>? = null
+    costModifier: CostModifier,
+    listener: ItemsListEditorBinderListener<CostModifierBinder>? = null
 ) : ItemsListEditorGenericBinder<CostModifier, CostModifierBinder>(costModifier, listener), IDraggable {
 
     class ViewHolder(

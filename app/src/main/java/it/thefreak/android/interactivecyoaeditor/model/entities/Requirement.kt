@@ -1,0 +1,6 @@
+package it.thefreak.android.interactivecyoaeditor.model.entities
+
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.IdManageableItem
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.PolymorphicListManageableItem
+
+interface Requirement: IdManageableItem, PolymorphicListManageableItem<RequirementType>

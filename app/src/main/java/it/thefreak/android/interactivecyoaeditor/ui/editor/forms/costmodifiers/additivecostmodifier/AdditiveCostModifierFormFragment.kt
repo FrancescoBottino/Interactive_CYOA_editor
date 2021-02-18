@@ -7,10 +7,10 @@ import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdditiveCostModifierFormFragmentBinding
-import it.thefreak.android.interactivecyoaeditor.model.AdditiveCostModifier
-import it.thefreak.android.interactivecyoaeditor.model.ChoiceSelectionRequirement
-import it.thefreak.android.interactivecyoaeditor.model.PointAmountRequirement
-import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdditiveCostModifier
+import it.thefreak.android.interactivecyoaeditor.model.entities.ChoiceSelectionRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointAmountRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointComparisonRequirement
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.RequirementsListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader

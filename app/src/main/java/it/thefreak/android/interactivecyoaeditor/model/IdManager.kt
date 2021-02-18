@@ -1,46 +1,30 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.IdManageableItem
+import it.thefreak.android.interactivecyoaeditor.utils.UniqueIdGenerator
 import kotlin.reflect.KClass
 
 class IdManager {
-    companion object {
-        var len = 6
-        private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-    }
-
-    val idMap: HashMap<String, IdentifiableItem> by lazy {
+    val idMap: HashMap<String, IdManageableItem> by lazy {
         HashMap()
     }
 
-    fun generateId(): String {
-        return (1..len)
-                .map { kotlin.random.Random.nextInt(0, charPool.size) }
-                .map(charPool::get)
-                .joinToString("")
-    }
+    fun getNewId(): String = UniqueIdGenerator.getNewId { newId -> idMap.containsKey(newId) }
 
-    fun getNewId(): String {
-        var newId: String
-        do {
-            newId = generateId()
-        } while (idMap.containsKey(newId))
-        return newId
-    }
-
-    fun addWithNewId(obj: IdentifiableItem): String {
+    fun addWithNewId(obj: IdManageableItem): String {
         return getNewId().apply {
             idMap[this] = obj
         }
     }
 
-    fun addWithCurrentId(obj: IdentifiableItem, checkForUsed: Boolean = true) {
-        if(obj.id.isNullOrBlank() || obj.id?.length != 6) throw Exception()
+    fun addWithCurrentId(obj: IdManageableItem, checkForUsed: Boolean = true) {
+        if(obj.id.isNullOrBlank() || obj.id?.length != UniqueIdGenerator.len) throw Exception()
         if(checkForUsed && idMap.containsKey(obj.id)) throw Exception()
 
         idMap[obj.id!!] = obj
     }
 
-    fun remove(obj: IdentifiableItem) {
+    fun remove(obj: IdManageableItem) {
         if(!idMap.containsValue(obj)) throw Exception()
         idMap.remove(obj.id)
     }
@@ -55,12 +39,12 @@ class IdManager {
     }
 
     @Suppress("UNCHECKED_CAST")
-    inline fun <reified T: IdentifiableItem> findByType(): Map<String, T> {
+    inline fun <reified T: IdManageableItem> findByType(): Map<String, T> {
         return idMap.filter { (_,v) -> v is T } as Map<String, T>
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T: IdentifiableItem> findByType(type: KClass<T>): Map<String, T> {
+    fun <T: IdManageableItem> findByType(type: KClass<T>): Map<String, T> {
         return idMap.filter { (_,v) -> v::class == type } as Map<String, T>
     }
 }

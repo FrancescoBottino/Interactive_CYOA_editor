@@ -2,14 +2,14 @@ package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanag
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.model.PolymorphicListableItem
 import it.thefreak.android.interactivecyoaeditor.model.assignNewId
 import it.thefreak.android.interactivecyoaeditor.model.init
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.PolymorphicListManageableItem
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorItemListener
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty0
 
-class ItemsListFormPickerFactory<T: Any, P: PolymorphicListableItem<T>>(
+class ItemsListFormPickerFactory<T: Any, P: PolymorphicListManageableItem<T>>(
         private val type: KClass<P>,
         private val idManager: IdManager,
         private val container: KMutableProperty0<ArrayList<P>?>,

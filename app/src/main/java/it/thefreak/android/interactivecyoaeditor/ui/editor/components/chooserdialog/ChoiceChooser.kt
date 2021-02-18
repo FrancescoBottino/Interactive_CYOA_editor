@@ -6,8 +6,8 @@ import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
 import it.thefreak.android.interactivecyoaeditor.hide
 import it.thefreak.android.interactivecyoaeditor.hideIf
-import it.thefreak.android.interactivecyoaeditor.model.Choice
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
+import it.thefreak.android.interactivecyoaeditor.model.entities.Choice
 import it.thefreak.android.interactivecyoaeditor.views.itemselectordialog.SingleItemSelectorDialogBuilder
 
 class ChoiceChooser(

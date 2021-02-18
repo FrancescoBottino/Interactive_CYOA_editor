@@ -1,9 +1,10 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.IdManageableItem
 import kotlin.reflect.KMutableProperty0
 
 fun String?.copy(): String? = this?.let { ""+it }
-fun <T:IdentifiableItem> ArrayList<T>?.copy(idManager: IdManager): ArrayList<T>? {
+fun <T: IdManageableItem> ArrayList<T>?.copy(idManager: IdManager): ArrayList<T>? {
     return this?.let { list ->
         ArrayList<T>().apply {
             addAll(list.map { it.deepCopy(idManager) as T })
@@ -17,7 +18,7 @@ fun ArrayList<String>?.copy(): ArrayList<String>? {
         }
     }
 }
-fun <T:IdentifiableItem> HashSet<T>?.copy(idManager: IdManager): HashSet<T>? {
+fun <T: IdManageableItem> HashSet<T>?.copy(idManager: IdManager): HashSet<T>? {
     return this?.let { set ->
         HashSet<T>().apply {
             addAll( set.map { it.deepCopy(idManager) as T } )
@@ -32,19 +33,19 @@ fun HashSet<String>?.copy(): HashSet<String>? {
     }
 }
 
-fun <T: IdentifiableItem> T.assignNewId(idManager: IdManager): T {
+fun <T: IdManageableItem> T.assignNewId(idManager: IdManager): T {
     return this.apply {
         id = idManager.addWithNewId(this)
     }
 }
 
-fun <T: IdentifiableItem> T.addWithCurrentId(idManager: IdManager): T {
+fun <T: IdManageableItem> T.addWithCurrentId(idManager: IdManager): T {
     return this.apply {
         idManager.addWithCurrentId(this)
     }
 }
 
-fun <T: IdentifiableItem> T.removeFromIdMap(idManager: IdManager): T {
+fun <T: IdManageableItem> T.removeFromIdMap(idManager: IdManager): T {
     return this.apply {
         idManager.remove(this)
     }

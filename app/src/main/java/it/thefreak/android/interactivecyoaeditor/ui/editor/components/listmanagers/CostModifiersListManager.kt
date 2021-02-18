@@ -3,7 +3,11 @@ package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanag
 import android.content.Context
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import it.thefreak.android.interactivecyoaeditor.R
-import it.thefreak.android.interactivecyoaeditor.model.*
+import it.thefreak.android.interactivecyoaeditor.model.IdManager
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdditiveCostModifier
+import it.thefreak.android.interactivecyoaeditor.model.entities.CostModifier
+import it.thefreak.android.interactivecyoaeditor.model.entities.CostModifierType
+import it.thefreak.android.interactivecyoaeditor.model.entities.MultiplicativeCostModifier
 import it.thefreak.android.interactivecyoaeditor.ui.editor.binders.CostModifierBinder
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.itemslisteditorfactories.ItemsListFormPickerFactory
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericManager
@@ -11,11 +15,11 @@ import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsList
 import kotlin.reflect.KMutableProperty0
 
 class CostModifiersListManager (
-        ctx: Context,
-        itemsListEditorView: ItemsListEditorView,
-        idManager: IdManager,
-        container: KMutableProperty0<ArrayList<CostModifier>?>,
-        clickListener: (CostModifier) -> Unit,
+    ctx: Context,
+    itemsListEditorView: ItemsListEditorView,
+    idManager: IdManager,
+    container: KMutableProperty0<ArrayList<CostModifier>?>,
+    clickListener: (CostModifier) -> Unit,
 ): ItemsListEditorGenericManager<CostModifier, CostModifierBinder>(
         ctx,
         itemsListEditorView,

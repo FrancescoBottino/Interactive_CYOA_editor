@@ -7,14 +7,14 @@ import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
 import it.thefreak.android.interactivecyoaeditor.hide
-import it.thefreak.android.interactivecyoaeditor.model.AdventureMeta
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdventureMeta
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class AdventureMetaBinder(
-        meta: AdventureMeta,
-        listener: ItemsListEditorBinderListener<AdventureMetaBinder>?,
+    meta: AdventureMeta,
+    listener: ItemsListEditorBinderListener<AdventureMetaBinder>?,
 ): ItemsListEditorGenericBinder<AdventureMeta, AdventureMetaBinder>(meta, listener), IDraggable {
     override val layoutRes: Int
         get() = R.layout.list_item_generic

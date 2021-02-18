@@ -7,7 +7,7 @@ import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.AdventureFormFragmentBinding
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
+import it.thefreak.android.interactivecyoaeditor.model.entities.Adventure
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.AdventureNodesListManager
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.PointsListManager

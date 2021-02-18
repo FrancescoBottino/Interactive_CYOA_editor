@@ -10,9 +10,9 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.PointsComparisonRequirementFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.getAdapterWrapper
-import it.thefreak.android.interactivecyoaeditor.model.ComparisonFunction
-import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequirement
-import it.thefreak.android.interactivecyoaeditor.model.PointType
+import it.thefreak.android.interactivecyoaeditor.model.entities.ComparisonFunction
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointComparisonRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointType
 import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormModelIdManagerLoader
 
 class PointComparisonRequirementFormFragment: KeyedFragment(R.layout.points_comparison_requirement_form_fragment) {

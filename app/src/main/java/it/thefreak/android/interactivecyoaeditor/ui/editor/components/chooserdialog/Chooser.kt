@@ -6,11 +6,11 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.model.IdentifiableItem
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.IdManageableItem
 import it.thefreak.android.interactivecyoaeditor.views.itemselectordialog.SingleItemSelectorDialogBuilder
 import kotlin.reflect.KClass
 
-abstract class Chooser<T: IdentifiableItem>(
+abstract class Chooser<T: IdManageableItem>(
         private val ctx: Context,
         private val type: KClass<T>,
         private val idManager: IdManager,

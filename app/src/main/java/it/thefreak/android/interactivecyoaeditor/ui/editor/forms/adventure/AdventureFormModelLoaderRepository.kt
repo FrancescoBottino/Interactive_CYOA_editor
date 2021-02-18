@@ -2,11 +2,11 @@ package it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure
 
 import android.net.Uri
 import androidx.core.net.toFile
-import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.loadFromJsonFile
-import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.saveToJsonFile
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
+import it.thefreak.android.interactivecyoaeditor.model.entities.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.format
+import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.loadFromJsonFile
+import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.saveToJsonFile
 
 class AdventureFormModelLoaderRepository(
         /*

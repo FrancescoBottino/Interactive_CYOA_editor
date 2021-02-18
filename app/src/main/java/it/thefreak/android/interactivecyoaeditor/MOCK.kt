@@ -3,8 +3,9 @@ package it.thefreak.android.interactivecyoaeditor
 import android.content.Context
 import android.net.Uri
 import androidx.core.net.toUri
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
+import it.thefreak.android.interactivecyoaeditor.model.entities.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.format
+import it.thefreak.android.interactivecyoaeditor.utils.Cacher
 
 const val FILENAME: String = "adventure_file"
 
@@ -22,5 +23,5 @@ fun saveAction(ctx: Context, adventure: Adventure): Boolean {
     return true
 }
 fun loadAction(ctx: Context): Adventure {
-    return (Cacher.loadPersistent<Adventure>(ctx, FILENAME, format)?:Adventure())
+    return (Cacher.loadPersistent<Adventure>(ctx, FILENAME, format)?: Adventure())
 }

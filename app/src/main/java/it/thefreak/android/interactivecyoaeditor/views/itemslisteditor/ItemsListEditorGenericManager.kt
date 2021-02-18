@@ -11,7 +11,7 @@ import com.mikepenz.fastadapter.drag.SimpleDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
 import com.mikepenz.itemanimators.AlphaInAnimator
 import it.thefreak.android.interactivecyoaeditor.hide
-import it.thefreak.android.interactivecyoaeditor.model.ListableItem
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.ListableItem
 import it.thefreak.android.interactivecyoaeditor.onClick
 import it.thefreak.android.interactivecyoaeditor.show
 

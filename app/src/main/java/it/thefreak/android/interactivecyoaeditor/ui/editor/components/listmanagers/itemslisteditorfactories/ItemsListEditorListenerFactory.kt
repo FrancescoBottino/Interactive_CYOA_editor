@@ -1,14 +1,14 @@
 package it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.itemslisteditorfactories
 
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.model.ListableItem
 import it.thefreak.android.interactivecyoaeditor.model.assignNewId
 import it.thefreak.android.interactivecyoaeditor.model.init
+import it.thefreak.android.interactivecyoaeditor.model.itemtypes.ListManageableItem
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorItemListener
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty0
 
-class ItemsListEditorListenerFactory<T: ListableItem>(
+class ItemsListEditorListenerFactory<T: ListManageableItem>(
         private val type: KClass<T>,
         private val factory: ()->T?,
         private val idManager: IdManager,

@@ -1,5 +1,6 @@
 package it.thefreak.android.interactivecyoaeditor.model
 
+import it.thefreak.android.interactivecyoaeditor.model.entities.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic

@@ -5,13 +5,13 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.model.AdventureNode
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdventureNode
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class AdventureNodeBinder constructor(
-        adventureItem: AdventureNode,
-        listener: ItemsListEditorBinderListener<AdventureNodeBinder>? = null
+    adventureItem: AdventureNode,
+    listener: ItemsListEditorBinderListener<AdventureNodeBinder>? = null
 ) : ItemsListEditorGenericBinder<AdventureNode, AdventureNodeBinder>(adventureItem, listener), IDraggable {
 
     class ViewHolder(

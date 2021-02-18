@@ -5,13 +5,13 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.model.PointType
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointType
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class PointTypeBinder constructor(
-        pointType: PointType,
-        listener: ItemsListEditorBinderListener<PointTypeBinder>? = null
+    pointType: PointType,
+    listener: ItemsListEditorBinderListener<PointTypeBinder>? = null
 ) : ItemsListEditorGenericBinder<PointType, PointTypeBinder>(pointType, listener), IDraggable {
 
     class ViewHolder(

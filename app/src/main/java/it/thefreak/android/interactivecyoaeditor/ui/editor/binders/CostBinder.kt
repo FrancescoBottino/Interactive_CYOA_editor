@@ -5,16 +5,16 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.model.Cost
 import it.thefreak.android.interactivecyoaeditor.model.IdManager
-import it.thefreak.android.interactivecyoaeditor.model.PointType
+import it.thefreak.android.interactivecyoaeditor.model.entities.Cost
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointType
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class CostBinder constructor(
-        cost: Cost,
-        listener: ItemsListEditorBinderListener<CostBinder>? = null,
-        val idManager: IdManager
+    cost: Cost,
+    listener: ItemsListEditorBinderListener<CostBinder>? = null,
+    val idManager: IdManager
 ) : ItemsListEditorGenericBinder<Cost, CostBinder>(cost, listener), IDraggable {
 
     class ViewHolder(

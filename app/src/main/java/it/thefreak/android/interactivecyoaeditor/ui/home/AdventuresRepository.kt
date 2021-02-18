@@ -6,12 +6,12 @@ import android.os.FileObserver
 import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import it.thefreak.android.interactivecyoaeditor.FileSelector.getFile
-import it.thefreak.android.interactivecyoaeditor.FileSelector.getTopFile
-import it.thefreak.android.interactivecyoaeditor.JsonFileHandler.saveToJsonFile
-import it.thefreak.android.interactivecyoaeditor.UniqueIdGenerator
-import it.thefreak.android.interactivecyoaeditor.model.Adventure
-import it.thefreak.android.interactivecyoaeditor.model.AdventureMeta
+import it.thefreak.android.interactivecyoaeditor.model.entities.Adventure
+import it.thefreak.android.interactivecyoaeditor.model.entities.AdventureMeta
+import it.thefreak.android.interactivecyoaeditor.utils.FileSelector.getFile
+import it.thefreak.android.interactivecyoaeditor.utils.FileSelector.getTopFile
+import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.saveToJsonFile
+import it.thefreak.android.interactivecyoaeditor.utils.UniqueIdGenerator
 import java.io.File
 
 class AdventuresRepository {
@@ -55,7 +55,7 @@ class AdventuresRepository {
                 adventuresList.postValue(getAllAdventures(folder))
             }
         }.apply {
-            startWatching();
+            startWatching()
         }
     }
     fun getAdventuresList(ctx: Context): LiveData<List<Pair<Uri, Uri>>> {
@@ -75,7 +75,9 @@ class AdventuresRepository {
         val advFile = File(idFolder, adventureFileName)
         val metaFile = File(idFolder, metaFileName)
 
-        val meta = AdventureMeta(adv, advFile.toUri())
+        //TODO fix
+        //val meta = AdventureMeta(adv, advFile.toUri())
+        val meta = AdventureMeta()
         saveToJsonFile(advFile, adv)
         saveToJsonFile(metaFile, meta)
 

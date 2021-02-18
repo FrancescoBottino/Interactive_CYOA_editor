@@ -8,10 +8,10 @@ import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.ChoiceFormFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.hide
-import it.thefreak.android.interactivecyoaeditor.model.Choice
-import it.thefreak.android.interactivecyoaeditor.model.ChoiceSelectionRequirement
-import it.thefreak.android.interactivecyoaeditor.model.PointAmountRequirement
-import it.thefreak.android.interactivecyoaeditor.model.PointComparisonRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.Choice
+import it.thefreak.android.interactivecyoaeditor.model.entities.ChoiceSelectionRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointAmountRequirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.PointComparisonRequirement
 import it.thefreak.android.interactivecyoaeditor.onTextChanged
 import it.thefreak.android.interactivecyoaeditor.show
 import it.thefreak.android.interactivecyoaeditor.ui.editor.components.listmanagers.AdventureNodesListManager

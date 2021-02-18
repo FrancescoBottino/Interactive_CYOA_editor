@@ -5,14 +5,14 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.drag.IDraggable
 import it.thefreak.android.interactivecyoaeditor.*
 import it.thefreak.android.interactivecyoaeditor.databinding.ListItemGenericBinding
-import it.thefreak.android.interactivecyoaeditor.model.Requirement
-import it.thefreak.android.interactivecyoaeditor.model.RequirementType
+import it.thefreak.android.interactivecyoaeditor.model.entities.Requirement
+import it.thefreak.android.interactivecyoaeditor.model.entities.RequirementType
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorBinderListener
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class RequirementBinder(
-        requirement: Requirement,
-        listener: ItemsListEditorBinderListener<RequirementBinder>? = null
+    requirement: Requirement,
+    listener: ItemsListEditorBinderListener<RequirementBinder>? = null
 ) : ItemsListEditorGenericBinder<Requirement, RequirementBinder>(requirement, listener), IDraggable {
 
     class ViewHolder(

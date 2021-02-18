@@ -1,3 +1,0 @@
-package it.thefreak.android.interactivecyoaeditor.model
-
-interface CostModifier: IdentifiableItem, PolymorphicListableItem<CostModifierType>, RequirementHolderItem
