@@ -2,6 +2,7 @@ package it.thefreak.android.interactivecyoaeditor.model
 
 import it.thefreak.android.interactivecyoaeditor.model.itemtypes.IdManageableItem
 import it.thefreak.android.interactivecyoaeditor.utils.UniqueIdGenerator
+import it.thefreak.android.interactivecyoaeditor.utils.UniqueIdGenerator.isIdValid
 import kotlin.reflect.KClass
 
 class IdManager {
@@ -18,10 +19,13 @@ class IdManager {
     }
 
     fun addWithCurrentId(obj: IdManageableItem, checkForUsed: Boolean = true) {
-        if(obj.id.isNullOrBlank() || obj.id?.length != UniqueIdGenerator.len) throw Exception()
-        if(checkForUsed && idMap.containsKey(obj.id)) throw Exception()
+        obj.id?.let { id ->
+            id.isIdValid()
+            if(checkForUsed && idMap.containsKey(id))
+                throw UniqueIdGenerator.IdException("Id already in use")
 
-        idMap[obj.id!!] = obj
+            idMap[id] = obj
+        }
     }
 
     fun remove(obj: IdManageableItem) {
