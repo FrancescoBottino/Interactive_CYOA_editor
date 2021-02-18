@@ -39,8 +39,9 @@ class LocalAdventuresViewModel: ViewModel() {
 
     private var observer: FileObserver? = null
 
-    private fun getAllAdventures(folder: File): List<AdventureMeta> {
-        return folder.listFiles()?.filter { file ->
+    @WorkerThread
+    private suspend fun getAllAdventures(ctx: Context): List<AdventureMeta> {
+        return getAdventuresFolder(ctx).listFiles()?.filter { file ->
             file.extension == "json"
         }?.map { advFile ->
             deserializationExcluderGson.fromJson(
@@ -59,28 +60,10 @@ class LocalAdventuresViewModel: ViewModel() {
         } ?: emptyList()
     }
 
-    @WorkerThread
-    private suspend fun loadLocalAdventures(ctx: Context) {
-        val folder = getAdventuresFolder(ctx)
-
-        observer = object: FileObserver(folder) {
-            override fun startWatching() {
-                super.startWatching()
-                localAdventures.postValue(getAllAdventures(folder))
-            }
-
-            override fun onEvent(p0: Int, p1: String?) {
-                localAdventures.postValue(getAllAdventures(folder))
-            }
-        }.apply {
-            startWatching()
-        }
-    }
-
     fun getAdventures(ctx: Context): LiveData<List<AdventureMeta>> {
         if(observer == null) {
             viewModelScope.launch(Dispatchers.IO) {
-                loadLocalAdventures(ctx)
+                localAdventures.postValue(getAllAdventures(ctx))
             }
         }
         return localAdventures
@@ -91,7 +74,7 @@ class LocalAdventuresViewModel: ViewModel() {
         val filename = UniqueIdGenerator.getNewId(ADVENTURE_FILE_ID_NAME_LENGTH) { newId ->
             !File(folder, newId).exists()
         }
-        val advFile = File(folder, filename)
+        val advFile = File(folder, "$filename.json")
 
         viewModelScope.launch(Dispatchers.IO) {
             JsonFileHandler.saveToJsonFile(advFile, adv, format)
