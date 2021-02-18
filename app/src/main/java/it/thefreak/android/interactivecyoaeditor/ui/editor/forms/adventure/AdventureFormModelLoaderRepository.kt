@@ -9,11 +9,6 @@ import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.loadFromJ
 import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.saveToJsonFile
 
 class AdventureFormModelLoaderRepository(
-        /*
-    private val adventureFormKey: AdventureFormKey,
-    private val backstack: Backstack,
-
-         */
     private val advUri: Uri
 ) {
     private var adventure: Adventure? = null

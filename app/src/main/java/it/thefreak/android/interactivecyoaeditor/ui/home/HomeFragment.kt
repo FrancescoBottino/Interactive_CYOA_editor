@@ -1,64 +1,77 @@
 package it.thefreak.android.interactivecyoaeditor.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.core.net.toFile
 import com.zhuinden.simplestackextensions.fragments.KeyedFragment
+import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import it.thefreak.android.interactivecyoaeditor.R
 import it.thefreak.android.interactivecyoaeditor.databinding.HomeFragmentBinding
 import it.thefreak.android.interactivecyoaeditor.model.entities.Adventure
 import it.thefreak.android.interactivecyoaeditor.model.entities.AdventureMeta
-import it.thefreak.android.interactivecyoaeditor.utils.JsonFileHandler.loadFromJsonFile
+import it.thefreak.android.interactivecyoaeditor.ui.editor.forms.adventure.AdventureFormKey
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorItemListener
 
 class HomeFragment: KeyedFragment(R.layout.home_fragment) {
-    private val homeModel by lazy { lookup<HomeModel>() }
+    private val localAdventuresViewModel by lazy {
+        lookup<LocalAdventuresViewModel>()
+    }
 
     private lateinit var binding: HomeFragmentBinding
 
-    private lateinit var adventuresMetaListEditor: AdventuresMetaListManager
+    private lateinit var adventureMetaListEditor: AdventureMetaListManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = HomeFragmentBinding.bind(view)
         with(binding) {
-            adventuresMetaListEditor = AdventuresMetaListManager(
+            adventureMetaListEditor = AdventureMetaListManager(
                 requireContext(),
                 adventuresList,
                 object : ItemsListEditorItemListener<AdventureMeta> {
                     override fun onItemDelete(item: AdventureMeta): Boolean {
-                        return false
+                        return try {
+                            localAdventuresViewModel.deleteAdventure(item.uri!!)
+                            true
+                        } catch (e: Exception) {
+                            Log.e("ADV_REPO", e.message?:"couldn't delete adventure ${item.uri}")
+                            false
+                        }
                     }
 
                     override fun onItemClick(item: AdventureMeta) {
-                        //Todo fix
-                        //backstack.goTo(AdventureFormKey(item.adventureUri!!))
+                        backstack.goTo(AdventureFormKey(item.uri!!))
                     }
 
                     override fun onItemCopy(item: AdventureMeta): AdventureMeta? {
-                        TODO("Not yet implemented")
+                        return try {
+                            localAdventuresViewModel
+                                .copyAdventure(requireContext(), item)
+                        } catch (e: Exception) {
+                            Log.e("ADV_REPO", e.message?:"couldn't copy adventure ${item.uri}")
+                            null
+                        }
                     }
 
                     override fun onNewItem(adder: (AdventureMeta) -> Unit) {
-                        val newAdv = Adventure().apply {
-                            name = "test adv"
-                            version = "1.0.0"
+                        try {
+                            adder(
+                                localAdventuresViewModel
+                                    .saveNewAdventure(requireContext(), Adventure())
+                            )
+                        } catch (e: Exception) {
+                            Log.e("ADV_REPO", e.message?:"couldn't create new adventure")
                         }
-                        adder(homeModel.repo.newAdventure(requireContext(), newAdv))
                     }
                 }
             )
 
-            homeModel.repo
-                .getAdventuresList(requireContext())
-                .observe(viewLifecycleOwner) { uriPairList ->
-                    uriPairList.mapNotNull {
-                        loadFromJsonFile<AdventureMeta>(it.second.toFile())
-                    }.let { list ->
-                        adventuresMetaListEditor.set(list)
-                    }
+            localAdventuresViewModel
+                .getAdventures(requireContext())
+                .observe(viewLifecycleOwner) { adventures ->
+                    adventureMetaListEditor.set(adventures)
                 }
         }
     }

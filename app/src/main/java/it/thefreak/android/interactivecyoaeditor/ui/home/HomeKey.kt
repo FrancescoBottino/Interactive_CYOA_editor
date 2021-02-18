@@ -14,7 +14,7 @@ class HomeKey: FragmentKey(), DefaultServiceProvider.HasServices {
 
     override fun bindServices(serviceBinder: ServiceBinder) {
         with(serviceBinder) {
-            add(HomeModel(getKey(), backstack))
+            add(LocalAdventuresViewModel())
         }
     }
 }

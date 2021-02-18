@@ -1,12 +1,12 @@
 package it.thefreak.android.interactivecyoaeditor.model.entities
 
-import it.thefreak.android.interactivecyoaeditor.model.itemtypes.IdentifiableItem
+import android.net.Uri
 import it.thefreak.android.interactivecyoaeditor.model.itemtypes.ListableItem
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class AdventureMeta(
-    override var id: String? = null,
     override var icon: String? = null,
     override var ordinal: Int? = null,
     var name: String? = null,
@@ -14,5 +14,5 @@ data class AdventureMeta(
     var version: String? = null,
     var author: String? = null,
     var engineVersion: String? = null,
-): ListableItem, IdentifiableItem {
-}
+    @Transient var uri: Uri? = null,
+): ListableItem

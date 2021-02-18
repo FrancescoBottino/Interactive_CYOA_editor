@@ -38,7 +38,6 @@ class AdventureFormFragment: KeyedFragment(R.layout.adventure_form_fragment) {
             topAppBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.editor_menu_save_action -> {
-                        //TODO handle save action
                         advRepoModel.saveAdventure(adventure)
                         true
                     }

@@ -17,7 +17,7 @@ class AdventureFormKey(
 
     override fun bindServices(serviceBinder: ServiceBinder) {
         with(serviceBinder) {
-            add(AdventureFormModelLoaderRepository(/*getKey(), backstack, */advUri))
+            add(AdventureFormModelLoaderRepository(advUri))
             add(AdventureFormModelIdManagerLoader())
         }
     }
