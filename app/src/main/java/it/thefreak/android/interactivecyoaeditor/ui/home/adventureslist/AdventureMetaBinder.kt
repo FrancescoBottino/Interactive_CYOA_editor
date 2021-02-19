@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.ui.home
+package it.thefreak.android.interactivecyoaeditor.ui.home.adventureslist
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +13,8 @@ import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsList
 import it.thefreak.android.interactivecyoaeditor.views.itemslisteditor.ItemsListEditorGenericBinder
 
 class AdventureMetaBinder(
-    meta: AdventureMeta,
-    listener: ItemsListEditorBinderListener<AdventureMetaBinder>?,
+        meta: AdventureMeta,
+        listener: ItemsListEditorBinderListener<AdventureMetaBinder>?,
 ): ItemsListEditorGenericBinder<AdventureMeta, AdventureMetaBinder>(meta, listener), IDraggable {
     override val layoutRes: Int
         get() = R.layout.list_item_generic

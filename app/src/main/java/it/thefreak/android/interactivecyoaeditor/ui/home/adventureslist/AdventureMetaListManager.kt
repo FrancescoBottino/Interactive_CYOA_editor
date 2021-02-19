@@ -1,4 +1,4 @@
-package it.thefreak.android.interactivecyoaeditor.ui.home
+package it.thefreak.android.interactivecyoaeditor.ui.home.adventureslist
 
 import android.content.Context
 import it.thefreak.android.interactivecyoaeditor.model.entities.AdventureMeta

@@ -81,4 +81,6 @@
     <string name="chooser_dialog_cancel">Cancel</string>
     <string name="cost_modifier_type_additive">Additive</string>
     <string name="cost_modifier_type_multiplicative">Multiplicative</string>
+    <string name="menu_save_action">Save</string>
+    <string name="playthroughs_list_title_label">Playthroughs</string>
 </resources>

@@ -3,4 +3,7 @@
     <declare-styleable name="ItemsListEditor">
         <attr name="title_text" format="string" />
     </declare-styleable>
+    <declare-styleable name="BottomNavPager">
+        <attr name="menu_resource" format="reference" />
+    </declare-styleable>
 </resources>

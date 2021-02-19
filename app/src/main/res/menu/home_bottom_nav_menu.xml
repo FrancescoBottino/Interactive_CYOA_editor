@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_bottom_nav_menu_adventures_location"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="@string/adventures_list_title_label"/>
+    <item
+        android:id="@+id/home_bottom_nav_menu_playthroughs_location"
+        android:icon="@drawable/ic_baseline_alt_route_24"
+        android:title="@string/playthroughs_list_title_label"/>
+
+</menu>
