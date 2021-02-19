@@ -18,74 +18,36 @@ class BottomNavPagerManager(
     private val navView: BottomNavigationView = bottomNavPager.binding.navView
 
     private val menuItems: List<MenuItem> = navView.menu.children.toList()
-    private val firstScreenFragment: Fragment = fragments[firstScreenIndex]
-    private val firstScreenMenuItem: MenuItem = menuItems[firstScreenIndex]
-
-    private val navViewAction = BottomNavPagerItemSelectedListener(::scrollToScreen)
-    private val pagerAdapter = BottomNavPagerAdapter(parent, fragments)
-    private val pageChangeCallback = BottomNavPagerChangeCallback(::selectBottomNavigationViewMenuItem)
 
     init {
-        scrollToScreen(firstScreenFragment)
-        selectBottomNavigationViewMenuItem(firstScreenMenuItem)
+        /* TODO ADD FIRST SELECTED SCREEN
+        scrollToScreen(firstScreenIndex)
+        selectNavViewItem(firstScreenIndex)
+         */
 
-        pager.adapter = pagerAdapter
-        pager.registerOnPageChangeCallback(pageChangeCallback)
-    }
-
-
-    private fun scrollToScreen(menuItem: MenuItem) {
-        scrollToScreen(menuItems.indexOf(menuItem))
-    }
-
-    private fun scrollToScreen(screenFragment: Fragment) {
-        scrollToScreen(fragments.indexOf(screenFragment))
-    }
-
-    private fun scrollToScreen(screenIndex: Int) {
-        if (screenIndex != pager.currentItem) {
-            pager.currentItem = screenIndex
-        }
-    }
-
-    private fun selectBottomNavigationViewMenuItem(screenIndex: Int) {
-        selectBottomNavigationViewMenuItem(menuItems[screenIndex])
-    }
-
-    private fun selectBottomNavigationViewMenuItem(menuItem: MenuItem) {
-        navView.setOnNavigationItemSelectedListener(null)
-        navView.selectedItemId = menuItem.itemId
-        navView.setOnNavigationItemSelectedListener(navViewAction)
-    }
-
-    private class BottomNavPagerItemSelectedListener(
-        val selectionListener: (MenuItem)->Unit
-    ): BottomNavigationView.OnNavigationItemSelectedListener {
-        override fun onNavigationItemSelected(item: MenuItem): Boolean {
-            selectionListener(item)
-            return true
-        }
-    }
-
-    private class BottomNavPagerAdapter(
-        parent: Fragment,
-        val fragments: List<Fragment>
-    ): FragmentStateAdapter(parent) {
-        override fun createFragment(position: Int): Fragment {
-            return fragments[position]
+        navView.setOnNavigationItemSelectedListener { item ->
+            menuItems.indexOf(item).let {
+                if(it == -1) throw Exception("Id not found")
+                pager.currentItem = it
+            }
+            false
         }
 
-        override fun getItemCount(): Int {
-            return fragments.size
-        }
-    }
+        pager.registerOnPageChangeCallback(object: OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                navView.menu.getItem(position).isChecked = true;
+            }
+        })
 
-    private class BottomNavPagerChangeCallback(
-        val navHandler: (Int)->Unit
-    ): OnPageChangeCallback() {
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-            navHandler(position)
+        pager.adapter = object: FragmentStateAdapter(parent) {
+            override fun createFragment(position: Int): Fragment {
+                return fragments[position]
+            }
+
+            override fun getItemCount(): Int {
+                return fragments.size
+            }
         }
     }
 }
